@@ -1,0 +1,117 @@
+:root {
+  --main-color: #f3ad45;
+  --main-transition: all 0.255s ease-out;
+  --test-border: 3px solid #c3c5f5;
+}
+
+html,
+body {
+  /* background-color: #f6f6f6; */
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  object-fit: cover;
+  object-position: 0 30%;
+}
+/* ----------Banner------------- */
+
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 350px;
+}
+
+.each-slide span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
+}
+/* ----------end of the Banner------------- */
+
+/* ----------------------------------- */
+
+.ytp-chrome-top-buttons {
+  display: none !important;
+}
+.ytp-chrome-top {
+  display: none !important;
+}
+
+.ytp-show-cards-title {
+  display: none !important;
+}
+
+/* ----------- Loading ------------- */
+@import url("./loading.css");
+
+/* ----------- Products ------------- */
+@import url("./product.css");
+
+/* ----------- Profile ------------- */
+@import url("./profile.css");
+
+/* ----------- Products Manager ------------- */
+@import url("./products_manager.css");
+
+/* ----------- Navbar ------------- */
+@import url("./Navbar.css");
+
+/* ----------- MediaFooter ------------- */
+@import url("./MediaFooter.css");
+
+/* ----------- Filter ------------- */
+/* @import url("./filter.css"); */
+
+/* ----------- Banner ------------- */
+@import url("./Banner.css");
+
+/* ----------- DropDown ------------- */
+@import url("./DropDown.css");
+
+/* ----------- LanguageSelect ------------- */
+@import url("./LanguageSelect.css");
+
+/* ----------- productItem ------------- */
+@import url("./productItem/productItem.css");
+/* ----------- productItem ------------- */
+@import url("./productItem/productItemSlider.css");
+/* ----------- Category ------------- */
+@import url("./Category.css");
+
+/* ----------- Search ------------- */
+@import url("./Search.css");
+
+/* ----------- Footer ------------- */
+@import url("./Footer.css");
+@import url("./CartItem.css");
+
+/* ----------- MediaFooter ------------- */
+@import url("./Media/MediaSubFooter.css");
+/* ----------- Footer ------------- */
+@import url("./Media/MediaNavbar.css");
+
+/* ----------- orderDetail ------------- */
+@import url("./orderDetail.css");
+
+/* ----------- Youtube ------------- */
+@import url("./Youtube.css");
+/* ----------- About ------------- */
+@import url("./about.css");
+/* ----------- Sign in ------------- */
+@import url("./Signin.css");

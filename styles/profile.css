@@ -1,0 +1,121 @@
+.profile__page {
+  width: 90%;
+  margin: 0 auto;
+  /* margin-top:%; */
+}
+.profile__page .avatar {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  margin: 5px auto;
+  border: 3px solid var(--main-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile__page .avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.profile__page .avatar span {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #fff8;
+  text-align: center;
+  font-weight: 400;
+  color: rgb(255, 140, 45);
+  transition: 0.3 ease-in-out;
+}
+.form-group input {
+  border: 2px solid var(--main-color);
+}
+.profile__page .avatar:hover span {
+  bottom: -15%;
+}
+
+.profile__page #file_up {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  border: 3px solid var(--main-color) !important;
+}
+::-webkit-file-upload-button {
+  cursor: pointer;
+}
+/* -------------------- video section---------- */
+.profile__videoSection {
+  width: 100%;
+  /* border: 2px solid red; */
+  display: flex;
+}
+.profile__mainVideo {
+  width: 80%;
+  height: auto;
+  border-radius: 4px;
+  /* border: 2px solid red; */
+}
+.profile__leftSide {
+  width: 20%;
+  margin-left: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  height: auto;
+}
+.profile__leftSide button {
+  width: 100%;
+  height: 50px;
+  border-radius: 4px;
+  background-color: #fff;
+
+  outline: none;
+  border: 1px solid var(--main-color);
+  transition: var(--main-transition);
+}
+.profile__leftSide button:hover {
+  width: 100%;
+  height: 50px;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  outline: none;
+  transform: scale(1.03);
+  border: 1px solid var(--main-color);
+}
+.profile__videoDivider {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  /* border: 2px solid red; */
+}
+.profile__videoDivider button {
+  width: 30%;
+  height: 150px;
+  margin: 10px;
+  color: #fff;
+  font-size: 20px;
+  text-shadow: var(--main-color) 20px 10px 10px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  transition: var(--main-transition);
+}
+.profile__videoDivider button:hover {
+  transform: scale(1.02) translateY(-4px);
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 3px, rgba(0, 0, 0, 0.6) 0px 1px 2px;
+}
+/* ------------------------------ */
+.player {
+  /* border: 3px solid red !important; */
+}
