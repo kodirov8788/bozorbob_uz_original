@@ -127,7 +127,7 @@ function NavBar() {
       >
         <Link href="/">
           <div className="navbar__brandContainer">
-            <a className="navbar__brand">DunyoShop</a>
+            <a className="navbar__brand">BozorBoB</a>
             <div className="navbar__dot"></div>
           </div>
         </Link>
