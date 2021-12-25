@@ -15,7 +15,6 @@
   border: 2px solid #ccc;
 }
 .productItem__card:hover {
-  /* transform: translateY(-5px); */
   transform: scale(1.01) translateY(-3px);
   box-shadow: 0 15px 30px #ddd;
   border: 2px solid var(--main-color);
@@ -28,9 +27,7 @@
   border-top-right-radius: 4px;
   cursor: pointer;
 }
-/* .product_card img:hover {
-  transform: scale(1.02);
-} */
+
 .product__box h5 {
   width: 100%;
   text-overflow: ellipsis;

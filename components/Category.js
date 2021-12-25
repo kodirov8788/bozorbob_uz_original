@@ -16,14 +16,13 @@ const Category = () => {
   const { locale } = router;
   const t = locale === "en" ? en : uz;
   const [status, setStatus] = useState(false);
-  const [categoryId, setCategoryId] = useState("");
+  const [categoryId, setCategoryId] = useState();
 
   useEffect(() => {
     locale === "en"
       ? setCategoryId("Category")
       : setCategoryId("kategoriyalar");
   }, [locale]);
-  // console.log("this is category", categoryId);
 
   const click = () => {
     filterSearch({ router, category: null });
@@ -40,8 +39,6 @@ const Category = () => {
         <div className={status ? "task__adderStatus" : "hide__status"}>
           <li className="status" onClick={click}>
             <p>All</p>
-            {/* <div className="signal"></div> */}
-
             {categoryId || null || "" ? <div className="signal"></div> : ""}
           </li>
 

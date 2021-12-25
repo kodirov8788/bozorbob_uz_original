@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   position: fixed;
-  right: -70px;
-  top: 12px;
+  right: -30px;
+  top: 5px;
   padding: 10px 15px;
   border-radius: var(--py-borderr);
   background-color: var(--py-yellow);
@@ -11,7 +11,7 @@
   user-select: none;
   cursor: pointer;
   min-width: 100px;
-  width: 150px;
+  width: 100px;
   white-space: nowrap;
   height: 40px;
   z-index: 100;
@@ -21,7 +21,7 @@
 }
 .language__taskAdderSelect {
   width: 100px;
-  height: 40px;
+  height: 35px;
   background-color: var(--main-color);
   border-radius: 4px;
   display: flex;
@@ -31,20 +31,20 @@
   cursor: pointer;
   user-select: none;
 }
-.medialanguage__taskAdderSelect {
-  /* width: 50px; */
+
+.language__taskAdderSelect{
+  padding: 0 5px;
+  display: flex;
+  justify-content: space-between;
 }
 .language__taskAdderSelect p {
-  margin-right: 20px;
-  margin-left: 10px;
-  margin-top: 5px;
+  margin-top: 2px;
+  margin-right: 10px;
 }
 .language__taskAdderSelect img {
   width: 40px;
 }
-.medialanguage__taskAdderSelect img {
-  /* width: 40px; */
-}
+
 .language__taskAdderStatus {
   position: absolute;
   width: 180px;
@@ -53,9 +53,7 @@
   background-color: #f1f1f1;
   top: 40px;
   border-radius: 4px;
-  /* transform: scaleY(1); */
   transition: all 0.1s;
-  /* transform-origin: top; */
   z-index: 10;
 }
 .Medialanguage__taskAdderStatus {
@@ -86,13 +84,11 @@
 }
 
 .language__taskHide__status {
-  transition: all 0.2s;
-  /* transform-origin: top; */
+  transition: all 0.3s;
   top: 45px;
-  right: 0;
+  right: -20px;
   width: 0;
   position: absolute;
-  /* transform: scaleY(0); */
 }
 
 @media screen and (max-width: 768px) {
