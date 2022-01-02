@@ -15,6 +15,7 @@ const Cart = () => {
   const { state, dispatch } = useContext(DataContext);
   const { cart, auth, orders } = state;
 
+  console.log("cart section >>>", cart);
   const [total, setTotal] = useState(0);
 
   const [address, setAddress] = useState("");
@@ -40,7 +41,9 @@ const Cart = () => {
       const updateCart = async () => {
         for (const item of cartLocal) {
           const res = await getData(`product/${item._id}`);
-          const { _id, title, video, images, price, inStock, sold } =
+          const { _id, title, video_1,
+            video_2,
+            video_3, video, images, price, book, inStock, sold } =
             res.product;
           if (inStock > 0) {
             newArr.push({
@@ -49,6 +52,10 @@ const Cart = () => {
               images,
               price,
               video,
+              video_1,
+              video_2,
+              video_3,
+              book,
               inStock,
               sold,
               quantity: item.quantity > inStock ? 1 : item.quantity,

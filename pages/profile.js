@@ -10,6 +10,7 @@ import valid from "../utils/valid";
 import { patchData } from "../utils/fetchData";
 import ReactPlayer from "react-player";
 import { imageUpload } from "../utils/imageUpload";
+import { BsArrowUpRight } from "react-icons/bs";
 const Profile = () => {
   const initialSate = {
     avatar: "",
@@ -17,58 +18,43 @@ const Profile = () => {
     password: "",
     cf_password: "",
   };
-  // const scrollTop = () => {
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-  // };
-  const YOUTUBE__API__KEY = process.env.YOUTUBE__API__KEY;
-  const [tab, setTab] = useState(0);
-  const [tab2, setTab2] = useState(0);
-
-  // console.log("tab2", tab2);
   const [data, setData] = useState(initialSate);
-  const [item2, setItem2] = useState([]);
-  const [item3, setItem3] = useState([]);
-  const [item6, setItem6] = useState(false);
-  const [video, setVideo] = useState([]);
-  const [video2, setVideo2] = useState([]);
-  const box = item3.filter((pro) => pro.length !== 0);
-
-  console.log("this is video", video?.items);
-  console.log("this is video2", video2);
-  // console.log("this is video details", video?.items.snippet);
-
-  // -------------Video and Rasm ------------------
-  const pr = box.map((pro) => pro.filter((it) => it.video));
-  const pr2 = pr.filter((pi) => pi.length !== 0);
-  const pr3 = pr2.filter((box22) => box22.length === 1);
-  const pr4 = pr2.filter(
-    (box22) =>
-      box22.length !== 1 && box22.map((item) => pr3.push(new Array(item)))
-  );
-  const pr5 = pr3.map((pr3inner) => pr3inner[0]);
-  const pr6 = pr5.map((pr5inner) => pr5inner.video);
-  console.log("pr6", pr6);
-  // ----------------------------------
   const { avatar, name, password, cf_password } = data;
-
   const { state, dispatch } = useContext(DataContext);
   const { auth, notify, orders } = state;
-  useEffect(() => {
-    const res2 = setItem2(orders.map((item) => item));
-    return res2;
-  }, [orders]);
+  const [dataArr, setDataArr] = useState([]);
+  const [dataVideo, setDataVideo] = useState([]);
 
   useEffect(() => {
-    const res3 = setItem3(
-      item2
-        ?.filter((as) => as.delivered === true)
-        .map((cartWrap) =>
-          cartWrap?.cart.filter((cartInner) => cartInner.video)
-        )
-      // .filter()
-    );
-    return res3;
-  }, [item2]);
+    const arr = ((orders.map(item => item.cart)).map(item => item.filter(item2 => item2.book)).map(item => item.length !== 0 ? item.map(item2 => item2) : ""))
+    // const arrVideo = ((orders.map(item => item.cart)).map(item => item.filter(item2 => item2.video)).map(item => item.length !== 0 ? item.map(item2 => item2) : ""))
+
+
+    const arr2 = (arr.filter(item => item !== "").map(item => item[0]))
+    // const arrVideo2 = (arrVideo.filter(item => item !== "").map(item => item[0]))
+    let x = []
+    setDataArr(arr2)
+    const videoArr = orders.map(item => item.cart[0]).filter(ar => ar !== undefined)
+    const videoArr2 = orders.map(item => item.cart[1]).filter(ar => ar !== undefined)
+    const videoArr3 = orders.map(item => item.cart[2]).filter(ar => ar !== undefined)
+    const videoArr4 = orders.map(item => item.cart[3]).filter(ar => ar !== undefined)
+    const videoArr5 = orders.map(item => item.cart[4]).filter(ar => ar !== undefined)
+
+    const arrr = (videoArr.map(item => x.push(item))) +
+      (videoArr2.map(item => x.push(item))) +
+      (videoArr3.map(item => x.push(item))) +
+      (videoArr4.map(item => x.push(item))) +
+      (videoArr5.map(item => x.push(item)))
+    console.log("videoArr2 >:", videoArr2);
+    console.log("videoArr3 >:", videoArr3);
+    console.log("videoArr4 >:", videoArr4);
+    console.log("videoArr5 >:", videoArr5);
+    const z = x.filter(arr => arr.video[0].video_1 !== "")
+    console.log("z >>:", z);
+    setDataVideo(z)
+  }, [orders]);
+
+  console.log("dataVideo >>>", dataVideo)
 
   useEffect(() => {
     if (auth.user) setData({ ...data, name: auth.user.name });
@@ -153,30 +139,6 @@ const Profile = () => {
       return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
     });
   };
-  // --------------------video -----------------------
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const res = axios
-        .get(
-          `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${pr6[tab2]}&key=${YOUTUBE__API__KEY}&maxResults=99`
-        )
-        .then((response) => {
-          setVideo(response?.data);
-          +setItem6(true);
-          console.log("video bor", response.data);
-        })
-        .catch((error) =>
-          error ? console.log("video yoq") : console.log("ok")
-        );
-
-      return res;
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [pr6 + tab2]);
-
-  // --------------------end of the video ------------
-
   if (!auth.user) return null;
   return (
     <div className="profile__page">
@@ -324,64 +286,60 @@ const Profile = () => {
           </div>
         </div>
       </section>
-      {/* {pr6[1]} */}
-      {/* <iframe
-        src={pr6[2]}
-        width="1280"
-        height="686"
-        frameBorder="0"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
-        title="p1.mp4"
-      ></iframe> */}
-      {item6 ? (
-        <>
-          <div className="profile__videoSection">
-            <div className="profile__mainVideo">
-              <ReactPlayer
-                url={`https://www.youtube.com/watch?v=${video?.items[tab].snippet.resourceId.videoId}`}
-                borderRadius="4px"
-                width="100%"
-                height="500px"
-                className="player"
-                playing={true}
-                controls={true}
-                showinfo={true}
-              />
-            </div>
-            <div className="profile__leftSide">
-              {video.items.map((video, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setTab(index);
-                    // + scrollTop();
+      <table
+        className="table-bordered table-hover w-100"
+        style={{ cursor: "pointer" }}
+      >
+        <thead className="bg-light font-weight-bold">
+          <tr>
+            <td className="profile__table_header">Image</td>
+            <td className="profile__table_header">Title</td>
+            <td className="profile__table_header">View and Download</td>
+            <td className="profile__table_header">Price</td>
+            <td className="profile__table_header">Delete</td>
+          </tr>
+        </thead>
+        <tbody>
+          {dataVideo.map((order, index) => (
+            <tr key={index}>
+              {/* <td className="profile__table">
+             
+                <img className="profile__table_img" src={item.images[0].url} alt={item.images[0].url} />
+              </td> */}
+              {/* <td className="profile__table">{item.title}</td> */}
+              <td className="profile__table">
+                <Link
+                  // href={`/order/${order._id}`}
+                  href={{
+                    pathname: `/videos/${order._id}`,
+                    query: {
+                      id: `${order._id}` // pass the id
+                    },
                   }}
                 >
-                  click me {index + 1}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="profile__videoDivider">
-            {pr5.map((pr5inner, ind) => (
-              <>
-                <button
-                  style={{
-                    backgroundImage: `url(${pr5inner.images[0].url}`,
-                  }}
-                  key={ind}
-                  onClick={() => setTab2(ind)}
-                >
-                  {pr5inner.title}
-                </button>
-              </>
-            ))}
-          </div>
-        </>
-      ) : (
-        ""
-      )}
+                  <a>{order.title}</a>
+                </Link>
+              </td>
+
+
+              {/* <td className="profile__table"><a href={item.book} target="_link">Ko'rish va Tortish</a></td>
+              <td className="profile__table">{item.price}</td> */}
+              <td className="profile__table"><i className="fas fa-times text-danger"></i></td>
+            </tr>
+          ))}
+          {/* {dataVideo.map((item, index) => (
+            <tr key={index}>
+              <td className="profile__table">
+                <img className="profile__table_img" src={item.images[0].url} alt={item.images[0].url} />
+              </td>
+              <td className="profile__table">{item.title}</td>
+              <td className="profile__table"><a href="" target="_link">Move to Course</a></td>
+              <td className="profile__table">{item.price}</td>
+              <td className="profile__table"><i className="fas fa-times text-danger"></i></td>
+            </tr>
+          ))} */}
+        </tbody>
+      </table>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const productSchema = new mongoose.Schema(
   {
     title: {
@@ -9,13 +8,12 @@ const productSchema = new mongoose.Schema(
     },
     sale: {
       type: Number,
-      // required: true,
-      // trim: true
     },
     video: {
+      type: Array,
+    },
+    book: {
       type: String,
-      // required: true,
-      // trim: true
     },
     price: {
       type: Number,
@@ -34,6 +32,10 @@ const productSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
+    // videos: {
+    //   type: Array,
+    //   required: true,
+    // },
     category: {
       type: String,
       required: true,
@@ -55,7 +57,6 @@ const productSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
 let Dataset =
   mongoose.models.product || mongoose.model("product", productSchema);
 export default Dataset;

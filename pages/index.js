@@ -10,11 +10,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Banner from "./Banner";
-import Category from "../components/Category";
 import Footer from "../components/Footer";
-import Youtube from "./Youtube";
-import Link from "next/link";
-import Videos from "./videos";
+// import Link from "next/link";
 import en from "../locales/en";
 import uz from "../locales/uz";
 const Home = (props) => {
@@ -23,18 +20,19 @@ const Home = (props) => {
   const [page, setPage] = useState(1);
   const router = useRouter();
   const { state, dispatch } = useContext(DataContext);
-  const { auth, isClick } = state;
+  const { auth } = state;
 
   const shirinliklar = [];
   const technology = [];
-  console.log("isClick", isClick);
+  useEffect(() => {
+    products.map((item) =>
+      item.category === "617afcdcaa8e7240bae36a42" ? shirinliklar.push(item) : ""
+    );
+    products.map((item) =>
+      item.category === "617afce5aa8e7240bae36a43" ? technology.push(item) : ""
+    );
+  }, [products])
 
-  products.map((item) =>
-    item.category === "617afcdcaa8e7240bae36a42" ? shirinliklar.push(item) : ""
-  );
-  products.map((item) =>
-    item.category === "617afce5aa8e7240bae36a43" ? technology.push(item) : ""
-  );
   const { locale } = router;
   const t = locale === "en" ? en : uz;
   // -------------------------------------------------
@@ -116,10 +114,10 @@ const Home = (props) => {
     dispatch({ type: "ADD_MODAL", payload: deleteArr });
   };
 
-  const handleLoadmore = () => {
-    setPage(page + 1);
-    filterSearch({ router, page: page + 1 });
-  };
+  // const handleLoadmore = () => {
+  //   setPage(page + 1);
+  //   filterSearch({ router, page: page + 1 });
+  // };
 
   return (
     <div className="home__page">
@@ -127,20 +125,6 @@ const Home = (props) => {
         <title>Home Page</title>
       </Head>
       <Banner />
-      {/* <button
-        onClick={() =>
-          dispatch({
-            type: "ISCLICK",
-            payload: !isClick,
-          })
-        }
-      >
-        IsClick
-      </button> */}
-
-      {/* <Link href="/videos">
-        <a> Videos</a>
-      </Link> */}
       {auth.user && auth.user.role === "admin" && (
         <div
           className="delete_all btn btn-danger mt-2"
@@ -156,7 +140,6 @@ const Home = (props) => {
               transform: "translateY(8px)",
             }}
           />
-
           <button
             className="btn btn-danger ml-2"
             data-toggle="modal"
@@ -167,7 +150,6 @@ const Home = (props) => {
           </button>
         </div>
       )}
-      {/* <Videos /> */}
       {shirinliklar.length !== 0 ? (
         <div className="product__slick">
           <h1>{t.product}</h1>
@@ -213,18 +195,6 @@ const Home = (props) => {
           ))
         )}
       </div>
-
-      {/* {props.result < page * 6 ? (
-        ""
-      ) : (
-        <button
-          className="btn btn-outline-info d-block mx-auto mb-4"
-          onClick={handleLoadmore}
-        >
-          Load more
-        </button>
-      )} */}
-
       <Footer />
     </div>
   );

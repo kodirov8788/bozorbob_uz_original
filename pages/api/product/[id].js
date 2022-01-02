@@ -43,6 +43,7 @@ const updateProduct = async (req, res) => {
     const {
       sale,
       video,
+      book,
       title,
       price,
       inStock,
@@ -50,6 +51,8 @@ const updateProduct = async (req, res) => {
       content,
       category,
       images,
+      // videos,
+      book_view,
     } = req.body;
 
     if (
@@ -73,8 +76,11 @@ const updateProduct = async (req, res) => {
         content,
         category,
         images,
+        // videos,
         video,
+        book,
         sale,
+        book_view,
       }
     );
 

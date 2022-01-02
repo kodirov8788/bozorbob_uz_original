@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -37,6 +36,5 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
 let Dataset = mongoose.models.user || mongoose.model("user", userSchema);
 export default Dataset;

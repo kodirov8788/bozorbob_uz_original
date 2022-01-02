@@ -21,7 +21,7 @@ const MediaFooter = () => {
   }, [auth]);
 
   // console.log(Object.keys(auth).length !== 0);
-  console.log(logged);
+  // console.log(logged);
 
   const router = useRouter();
   const [status, setStatus] = useState(false);
@@ -174,19 +174,16 @@ const MediaFooter = () => {
         </a>
       </li>
       <div
-        className={`${
-          userClick
-            ? `${
-                auth.user?.role === "admin"
-                  ? "MediaFooter__customListAdmin"
-                  : `${logged ? "MediaFooter__customList" : ""}`
-              }`
-            : `${
-                auth.user?.role === "admin"
-                  ? "MediaFooter__customListAdmin MediaFooter__customListAdmin__non"
-                  : "MediaFooter__customList MediaFooter__customList__non"
-              }`
-        }`}
+        className={`${userClick
+            ? `${auth.user?.role === "admin"
+              ? "MediaFooter__customListAdmin"
+              : `${logged ? "MediaFooter__customList" : ""}`
+            }`
+            : `${auth.user?.role === "admin"
+              ? "MediaFooter__customListAdmin MediaFooter__customListAdmin__non"
+              : "MediaFooter__customList MediaFooter__customList__non"
+            }`
+          }`}
       >
         {logged && (
           <>

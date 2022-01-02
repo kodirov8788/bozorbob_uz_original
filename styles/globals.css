@@ -26,9 +26,10 @@ img {
   object-fit: cover;
   object-position: 0 30%;
 }
+
 /* ----------Banner------------- */
 
-.each-slide > div {
+.each-slide>div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,6 +43,7 @@ img {
   background: #efefef;
   text-align: center;
 }
+
 /* ----------end of the Banner------------- */
 
 /* ----------------------------------- */
@@ -49,6 +51,7 @@ img {
 .ytp-chrome-top-buttons {
   display: none !important;
 }
+
 .ytp-chrome-top {
   display: none !important;
 }
@@ -115,3 +118,5 @@ img {
 @import url("./about.css");
 /* ----------- Sign in ------------- */
 @import url("./Signin.css");
+/* ----------- Videos ------------- */
+@import url("./Videos.css");

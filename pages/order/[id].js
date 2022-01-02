@@ -17,7 +17,7 @@ const DetailOrder = () => {
     const newArr = orders.filter((order) => order._id === router.query.id);
     setOrderDetail(newArr);
   }, [orders]);
-
+  console.log("orders", orders);
   if (!auth.user) return null;
   return (
     <div className="my-3">

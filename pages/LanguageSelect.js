@@ -32,7 +32,7 @@ function LanguageSelect() {
 
   useEffect(() => {
     const locale = lang;
-    console.log("useEffect value", lang);
+    // console.log("useEffect value", lang);
     router.push(router.pathname, router.asPath, { locale });
   }, [lang]);
 

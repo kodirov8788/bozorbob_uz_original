@@ -20,7 +20,7 @@ function Layout({ children }) {
     }
   }, [router]);
 
-  console.log("Router", route);
+  // console.log("Router", route);
   return (
     <div>
       <NavBar />

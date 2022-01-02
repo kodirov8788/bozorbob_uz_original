@@ -26,10 +26,10 @@ const ProductItem = ({ product, handleCheck }) => {
     return (
       <>
         <Link href={`product/${product._id}`}>
-          <div className="btn__view">
+          <a className="btn__view">
             <GrView />
             <p>{t.view}</p>
-          </div>
+          </a>
         </Link>
         <button
           className="btn__buy"
@@ -88,7 +88,6 @@ const ProductItem = ({ product, handleCheck }) => {
       )}
       <Link href={`product/${product._id}`}>
         <img
-          // className="card-img-top"
           src={product.images[0].url}
           alt={product.images[0].url}
         />
@@ -105,7 +104,6 @@ const ProductItem = ({ product, handleCheck }) => {
           {salebox && (
             <span className="productItem__actualPrice"> $ {product.price}</span>
           )}
-          {/* {salebox && product.price} */}
           <span className={salebox && " productItem__SalePrice"}>
             $
             {salebox && product.sale
@@ -117,11 +115,6 @@ const ProductItem = ({ product, handleCheck }) => {
             <span className="product__sale text-white">-{product.sale}%</span>
           )}
         </div>
-        {/* {product.inStock > 0 ? (
-          <h6 className="text-danger">In Stock: {product.inStock}</h6>
-        ) : (
-          <h6 className="text-danger">Out Stock</h6>
-        )} */}
         <p className="card__text" title={product.description}>
           {product.description}
         </p>

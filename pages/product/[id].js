@@ -13,41 +13,20 @@ import uz from "../../locales/uz";
 
 const DetailProduct = (props) => {
   const router = useRouter();
-  const YOUTUBE__API__KEY = process.env.YOUTUBE__API__KEY;
-
   const [product] = useState(props.product);
   const [tab, setTab] = useState(0);
-
   const { state, dispatch } = useContext(DataContext);
   const { cart } = state;
-
   const isActive = (index) => {
     if (tab === index) return " active";
     return "";
   };
-  // ------------------video section----------------
-  const [data, setData] = useState([]);
-
-  console.log("first", YOUTUBE__API__KEY);
-  console.log("this is product video", product.video);
-
-  useEffect(() => {
-    const getData = async () => {
-      if (product.category === "618380c46eab0893e95cbb1d") {
-        const res = await axios.get(
-          `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${product.video}&key=${YOUTUBE__API__KEY}&maxResutls=99`
-        );
-
-        setData(res.data.items);
-      }
-    };
-    getData();
-  }, []);
-
-  // console.log("this is data", data);
+  console.log("product >>>", product);
+  // const [data, setData] = useState([]);
   const { locale } = router;
   const t = locale === "en" ? en : uz;
-  console.log("Product", locale);
+
+  // console.log("cart >>>", cart);
   return (
     <div className="row detail_page">
       <Head>
@@ -55,8 +34,21 @@ const DetailProduct = (props) => {
       </Head>
       {product.category === "618380c46eab0893e95cbb1d" ? (
         <ReactPlayer
-          url={`https://www.youtube.com/watch?v=${data[0]?.snippet.resourceId.videoId}`}
-          // onClick={() => setTab(index)}
+          url="https://res.cloudinary.com/goodle/video/upload/v1640592262/videos/%D0%9E%D0%B7%D0%BE%D0%B4%D0%B0_%D0%B2%D0%B0_%D0%98%D0%B1%D1%80%D0%BE%D1%85%D0%B8%D0%BC_%D0%9D%D1%83%D1%80%D0%BC%D0%B0%D1%82%D0%BE%D0%B2_-_%D0%90%D1%81%D1%80%D0%B0%D1%81%D0%B8%D0%BD_ig1uqd.mp4"
+          width="40%"
+          height="400px"
+          playing={false}
+          playIcon={<button>Play</button>}
+          controls={true}
+
+          config={{
+            file: {
+              attributes: {
+                preload: "auto",
+                controlsList: 'nodownload'  //<- this is the important bit
+              }
+            }
+          }}
         />
       ) : (
         <div className="col-md-5 ml-2">
@@ -69,6 +61,7 @@ const DetailProduct = (props) => {
               objectFit: "cover",
               objectPosition: "center",
             }}
+            onEnded={() => this.onEnded()}
           />
           <div className="row ml-1" style={{ cursor: "pointer" }}>
             {product.images.map((img, index) => (

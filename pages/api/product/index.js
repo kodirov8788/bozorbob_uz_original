@@ -83,6 +83,7 @@ const createProduct = async (req, res) => {
 
     const {
       video,
+      book,
       sale,
       title,
       price,
@@ -91,8 +92,8 @@ const createProduct = async (req, res) => {
       content,
       category,
       images,
+      book_view,
     } = req.body;
-
     if (
       !title ||
       !price ||
@@ -113,7 +114,9 @@ const createProduct = async (req, res) => {
       category,
       images,
       video,
+      book,
       sale,
+      book_view,
     });
 
     await newProduct.save();

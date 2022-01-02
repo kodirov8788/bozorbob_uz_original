@@ -10,7 +10,6 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
   const router = useRouter();
   const { locale } = router;
   const t = locale === "en" ? en : uz;
-  console.log("this is orderData", orderDetail);
 
   const handleDelivered = (order) => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
@@ -21,7 +20,6 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
 
       const { paid, dateOfPayment, method, delivered } = res.result;
 
-      setOrderData(delivered);
       dispatch(
         updateItem(
           orders,
@@ -69,9 +67,8 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
               </p>
 
               <div
-                className={`alert text-break ${
-                  order.delivered ? "alert-success" : "alert-danger"
-                }
+                className={`alert text-break ${order.delivered ? "alert-success" : "alert-danger"
+                  }
                         d-flex justify-content-between align-items-center`}
                 role="alert"
               >
@@ -90,9 +87,8 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
 
               <h3>{t.payment}</h3>
               <div
-                className={`alert ${
-                  order.paid ? "alert-success" : "alert-danger"
-                }
+                className={`alert ${order.paid ? "alert-success" : "alert-danger"
+                  }
                         d-flex justify-content-between align-items-center`}
                 role="alert"
               >

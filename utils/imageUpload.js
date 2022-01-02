@@ -1,6 +1,6 @@
 export const imageUpload = async (images) => {
     let imgArr = []
-    for(const item of images){
+    for (const item of images) {
         const formData = new FormData()
         formData.append("file", item)
         formData.append("upload_preset", process.env.CLOUD_UPDATE_PRESET)
@@ -12,7 +12,7 @@ export const imageUpload = async (images) => {
         })
 
         const data = await res.json()
-        imgArr.push({public_id: data.public_id, url: data.secure_url})
+        imgArr.push({ public_id: data.public_id, url: data.secure_url })
     }
     return imgArr;
 }

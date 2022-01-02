@@ -6,6 +6,7 @@ import { imageUpload } from "../../utils/imageUpload";
 import { postData, getData, putData } from "../../utils/fetchData";
 import { useRouter } from "next/router";
 
+
 const ProductsManager = () => {
   const initialState = {
     title: "",
@@ -15,52 +16,70 @@ const ProductsManager = () => {
     content: "",
     category: "",
     sale: "",
-    video: "",
+    book: "",
   };
-  const [product, setProduct] = useState(initialState);
-  const { sale, video, title, price, inStock, description, content, category } =
-    product;
+  const videoInitial = {
+    video_1: "",
+    video_2: "",
+    video_3: "",
+  };
 
-  // --------------- video upload--------------------
-  const [videoInput, setVideoInput] = useState(false);
-
-  useEffect(() => {
-    if (category === "618380c46eab0893e95cbb1d") {
-      setVideoInput(true);
-    } else setVideoInput(false);
-  }, [category]);
-  console.log(videoInput);
-  // --------------- end of video upload--------------------
-
-  const [images, setImages] = useState([]);
 
   const { state, dispatch } = useContext(DataContext);
   const { categories, auth } = state;
+  const [product, setProduct] = useState(initialState);
+  const { sale, title, price, inStock, description, content, category, book } =
+    product;
+  // --------------- video upload--------------------
+  const [videoInput, setVideoInput] = useState(false);
+  const [pdfInput, setPdfInput] = useState(false);
+  const [categoryArr, setCategoryArr] = useState('');
+  useEffect(() => {
+    const x = (categories?.filter(item => item?._id === category)).map(item => item.name)
+    return setCategoryArr(x)
+  }, [category]);
+
+  useEffect(() => {
+    if (categoryArr == ('video cources')) {
+      setVideoInput(true), setPdfInput(false);
+    } else if (categoryArr == ('Books')) { setPdfInput(true), setVideoInput(false) } else { setPdfInput(false), setVideoInput(false) }
+  }, [categoryArr]);
+  console.log("videoInput", videoInput);
+  console.log("pdfInput", pdfInput);
+  // --------------- end of video upload--------------------
+  const [images, setImages] = useState([]);
+  const [video, setVideo] = useState(videoInitial);
+  console.log("video >>>", video);
 
   const router = useRouter();
   const { id } = router.query;
   const [onEdit, setOnEdit] = useState(false);
-
   useEffect(() => {
     if (id) {
       setOnEdit(true);
       getData(`product/${id}`).then((res) => {
         setProduct(res.product);
         setImages(res.product.images);
+        // setVideos(res.product.videos);
       });
     } else {
       setOnEdit(false);
       setProduct(initialState);
       setImages([]);
+      // setVideos([]);
     }
   }, [id]);
 
+  const handleVideoInput = (e) => {
+    const { name, value } = e.target;
+    setVideo({ ...video, [name]: value });
+    dispatch({ type: "NOTIFY", payload: {} });
+  };
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
     dispatch({ type: "NOTIFY", payload: {} });
   };
-
   const handleUploadInput = (e) => {
     dispatch({ type: "NOTIFY", payload: {} });
     let newImages = [];
@@ -96,6 +115,42 @@ const ProductsManager = () => {
       });
     setImages([...images, ...newImages]);
   };
+  // const handleVideosInput = (e) => {
+  //   dispatch({ type: "NOTIFY", payload: {} });
+  //   let newVideos = [];
+  //   let num = 0;
+  //   let err = "";
+  //   const files = [...e.target.files];
+
+  //   if (files.length === 0)
+  //     return dispatch({
+  //       type: "NOTIFY",
+  //       payload: { error: "Files does not exist." },
+  //     });
+
+  //   files.forEach((file) => {
+  //     // if (file.size > 3000 * 3000)
+  //     //   return (err = "The largest image size is 1mb");
+
+  //     // if (file.type !== "image/jpeg" && file.type !== "image/png")
+  //     //   return (err = "Image format is incorrect.");
+
+  //     num += 1;
+  //     if (num <= 5) newVideos.push(file);
+  //     return newVideos;
+  //   });
+
+  //   if (err) dispatch({ type: "NOTIFY", payload: { error: err } });
+
+  //   const videoCount = videos.length;
+  //   if (videoCount + newVideos.length > 5)
+  //     return dispatch({
+  //       type: "NOTIFY",
+  //       payload: { error: "Select up to 5 images." },
+  //     });
+  //   setVideos([...video, ...videoCount]);
+  // };
+
 
   const deleteImage = (index) => {
     const newArr = [...images];
@@ -131,7 +186,6 @@ const ProductsManager = () => {
     const imgOldURL = images.filter((img) => img.url);
 
     if (imgNewURL.length > 0) media = await imageUpload(imgNewURL);
-
     let res;
     if (onEdit) {
       res = await putData(
@@ -144,7 +198,7 @@ const ProductsManager = () => {
     } else {
       res = await postData(
         "product",
-        { ...product, images: [...imgOldURL, ...media] },
+        { ...product, images: [...imgOldURL, ...media], video },
         auth.token
       );
       if (res.err)
@@ -152,6 +206,7 @@ const ProductsManager = () => {
     }
 
     return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
+
   };
 
   return (
@@ -242,7 +297,6 @@ const ProductsManager = () => {
             {onEdit ? "Update" : "Create"}
           </button>
         </div>
-
         <div className="col-md-6 my-4">
           <div className="input-group mb-3">
             <div className="input-group-prepend">
@@ -258,7 +312,6 @@ const ProductsManager = () => {
               />
             </div>
           </div>
-
           <div className="row img-up mx-0">
             {images.map((img, index) => (
               <div key={index} className="file_img my-1">
@@ -267,7 +320,6 @@ const ProductsManager = () => {
                   alt=""
                   className="img-thumbnail rounded"
                 />
-
                 <span onClick={() => deleteImage(index)}>X</span>
               </div>
             ))}
@@ -283,14 +335,63 @@ const ProductsManager = () => {
               onChange={handleChangeInput}
             />
           </div>
-          {videoInput ? (
-            <div className="col-sm-6">
+          {videoInput ? (<>
+            {/* <div className="col-sm-6">
               <label htmlFor="video link">Video link</label>
               <input
                 type="text"
                 name="video"
                 value={video}
                 placeholder="video link"
+                className="d-block w-100 p-2"
+                onChange={handleChangeInput}
+              />
+            </div> */}
+            <div className="col-sm-6">
+              <label htmlFor="video link">Video_1 link</label>
+              <input
+                type="text"
+                name="video_1"
+                value={video.video_1}
+                placeholder="video_1 link"
+                className="d-block w-100 p-2"
+                onChange={handleVideoInput}
+              />
+            </div>
+            <div className="col-sm-6">
+              <label htmlFor="video_2 link">Video_2 link</label>
+              <input
+                type="text"
+                name="video_2"
+                value={video.video_2}
+                placeholder="video_2 link"
+                className="d-block w-100 p-2"
+                onChange={handleVideoInput}
+              />
+            </div>
+            <div className="col-sm-6">
+              <label htmlFor="video_3 link">Video_3 link</label>
+              <input
+                type="text"
+                name="video_3"
+                value={video.video_3}
+                placeholder="video_3 link"
+                className="d-block w-100 p-2"
+                onChange={handleVideoInput}
+              />
+            </div>
+          </>
+          ) : (
+            ""
+          )}
+          {pdfInput ? (
+            <div className="col-sm-6">
+              <label htmlFor="book's link">Book's link</label>
+              <input
+                type="text"
+                name="book"
+                value={book}
+                placeholder="book's link"
                 className="d-block w-100 p-2"
                 onChange={handleChangeInput}
               />
