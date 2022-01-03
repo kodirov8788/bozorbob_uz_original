@@ -27,29 +27,30 @@ const DetailProduct = (props) => {
   const t = locale === "en" ? en : uz;
 
   // console.log("cart >>>", cart);
-  return (
+  return (<>   <Head>
+    <title>{t.title}</title>
+  </Head>
     <div className="row detail_page">
-      <Head>
-        <title>{t.title}</title>
-      </Head>
       {product.category === "618380c46eab0893e95cbb1d" ? (
-        <ReactPlayer
-          url="https://res.cloudinary.com/goodle/video/upload/v1640592262/videos/%D0%9E%D0%B7%D0%BE%D0%B4%D0%B0_%D0%B2%D0%B0_%D0%98%D0%B1%D1%80%D0%BE%D1%85%D0%B8%D0%BC_%D0%9D%D1%83%D1%80%D0%BC%D0%B0%D1%82%D0%BE%D0%B2_-_%D0%90%D1%81%D1%80%D0%B0%D1%81%D0%B8%D0%BD_ig1uqd.mp4"
-          width="40%"
-          height="400px"
-          playing={false}
-          playIcon={<button>Play</button>}
-          controls={true}
+        <div className="product_video">
+          <ReactPlayer
+            url={product.video[0].video_1}
+            width="80%"
+            height="400px"
+            playing={false}
+            playIcon={<button>Play</button>}
+            controls={true}
 
-          config={{
-            file: {
-              attributes: {
-                preload: "auto",
-                controlsList: 'nodownload'  //<- this is the important bit
+            config={{
+              file: {
+                attributes: {
+                  preload: "auto",
+                  controlsList: 'nodownload'  //<- this is the important bit
+                }
               }
-            }
-          }}
-        />
+            }}
+          />
+        </div>
       ) : (
         <div className="col-md-5 ml-2">
           <img
@@ -78,7 +79,7 @@ const DetailProduct = (props) => {
         </div>
       )}
 
-      <div className="col-md-6 m-3 ">
+      <div className="col-md-5 m-1 ">
         <h2 className="text-uppercase">{product.title}</h2>
         <h5 className="text-danger">
           {t.price}: ${product.price}
@@ -92,10 +93,10 @@ const DetailProduct = (props) => {
           ) : (
             <h6 className="text-danger">Out Stock</h6>
           )}
-
+          {/* 
           <h6 className="text-danger">
             {t.sold}: {product.sold}
-          </h6>
+          </h6> */}
         </div>
 
         <div className="my-2">{product.description}</div>
@@ -109,7 +110,7 @@ const DetailProduct = (props) => {
           {t.productBtn}
         </button>
       </div>
-    </div>
+    </div></>
   );
 };
 

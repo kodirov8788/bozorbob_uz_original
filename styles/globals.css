@@ -106,8 +106,10 @@ img {
 
 /* ----------- MediaFooter ------------- */
 @import url("./Media/MediaSubFooter.css");
-/* ----------- Footer ------------- */
+/* ----------- MediaNavbar ------------- */
 @import url("./Media/MediaNavbar.css");
+/* ---------- MediaCategory ----------- */
+@import url("./Media/mediaCategory.css");
 
 /* ----------- orderDetail ------------- */
 @import url("./orderDetail.css");

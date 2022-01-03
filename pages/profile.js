@@ -27,11 +27,7 @@ const Profile = () => {
 
   useEffect(() => {
     const arr = ((orders.map(item => item.cart)).map(item => item.filter(item2 => item2.book)).map(item => item.length !== 0 ? item.map(item2 => item2) : ""))
-    // const arrVideo = ((orders.map(item => item.cart)).map(item => item.filter(item2 => item2.video)).map(item => item.length !== 0 ? item.map(item2 => item2) : ""))
-
-
     const arr2 = (arr.filter(item => item !== "").map(item => item[0]))
-    // const arrVideo2 = (arrVideo.filter(item => item !== "").map(item => item[0]))
     let x = []
     setDataArr(arr2)
     const videoArr = orders.map(item => item.cart[0]).filter(ar => ar !== undefined)
@@ -327,17 +323,6 @@ const Profile = () => {
               <td className="profile__table"><i className="fas fa-times text-danger"></i></td>
             </tr>
           ))}
-          {/* {dataVideo.map((item, index) => (
-            <tr key={index}>
-              <td className="profile__table">
-                <img className="profile__table_img" src={item.images[0].url} alt={item.images[0].url} />
-              </td>
-              <td className="profile__table">{item.title}</td>
-              <td className="profile__table"><a href="" target="_link">Move to Course</a></td>
-              <td className="profile__table">{item.price}</td>
-              <td className="profile__table"><i className="fas fa-times text-danger"></i></td>
-            </tr>
-          ))} */}
         </tbody>
       </table>
     </div>

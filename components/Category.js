@@ -13,20 +13,25 @@ const Category = () => {
   const { state } = useContext(DataContext);
   const { categories } = state;
   const router = useRouter();
-  const { locale } = router;
+  const { locale, pathname } = router;
   const t = locale === "en" ? en : uz;
   const [status, setStatus] = useState(false);
-  const [categoryId, setCategoryId] = useState();
+  const [categoryId, setCategoryId] = useState("");
+  console.log("router", pathname);
 
   useEffect(() => {
     locale === "en"
       ? setCategoryId("Category")
-      : setCategoryId("kategoriyalar");
+      : setCategoryId("kategoriyalar")
   }, [locale]);
 
   const click = () => {
     filterSearch({ router, category: null });
-    setCategoryId(ctg);
+    router.push({ pathname: '/' });
+    locale === "en"
+      ? setCategoryId("Category")
+      : setCategoryId("kategoriyalar")
+
   };
   return (
     <>
@@ -37,9 +42,11 @@ const Category = () => {
       >
         <p> {categoryId} </p>
         <div className={status ? "task__adderStatus" : "hide__status"}>
-          <li className="status" onClick={click}>
+          <li className="status" onClick={click}
+            onMouseEnter={() => setStatus(true)}
+            onMouseLeave={() => setStatus(false)}>
             <p>All</p>
-            {categoryId || null || "" ? <div className="signal"></div> : ""}
+            <div className={`${categoryId === "Category" || categoryId === "kategoriyalar" ? "signal" : ""}`}></div>
           </li>
 
           {categories.map((item) => (

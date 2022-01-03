@@ -1,10 +1,10 @@
 import Head from "next/head";
 import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../store/GlobalState";
+import Filter from "../components/Filter";
 import { getData } from "../utils/fetchData";
 import ProductItem from "../components/product/ProductItem";
 import ProductItemSlider from "../components/product/ProductItemSlider";
-import filterSearch from "../utils/filterSearch";
 import { useRouter } from "next/router";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,6 +14,7 @@ import Footer from "../components/Footer";
 // import Link from "next/link";
 import en from "../locales/en";
 import uz from "../locales/uz";
+import MediaCategory from "../components/Media/MediaCategory";
 const Home = (props) => {
   const [products, setProducts] = useState(props.products);
   const [isCheck, setIsCheck] = useState(false);
@@ -150,6 +151,10 @@ const Home = (props) => {
           </button>
         </div>
       )}
+      <div className="price_option">
+        <Filter />
+      </div>
+      <MediaCategory />
       {shirinliklar.length !== 0 ? (
         <div className="product__slick">
           <h1>{t.product}</h1>

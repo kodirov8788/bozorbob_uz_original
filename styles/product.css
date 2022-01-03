@@ -144,15 +144,23 @@
   -webkit-line-clamp: 3;
 }
 
+.price_option {
+  margin-left: 5%;
+}
+
 /* --------- Detail Product ----------- */
 .detail_page {
-  padding-left: 20px;
+  padding-left: 30px;
+  display: flex;
 }
 
 .detail_page .img-thumbnail.active {
   border: 2px solid var(--main-color);
-
   padding: 2px;
+}
+
+.product_video {
+  margin-top: -30px;
 }
 
 .productDetail__buyBtn {
