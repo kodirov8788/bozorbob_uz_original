@@ -19,7 +19,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     place-items: center;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-bottom: 70px;
     margin-left: auto;
     margin-right: auto;
@@ -146,6 +146,7 @@
 
 .price_option {
   margin-left: 5%;
+  margin-top: 5%;
 }
 
 /* --------- Detail Product ----------- */

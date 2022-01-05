@@ -46,18 +46,16 @@ img {
 
 /* ----------end of the Banner------------- */
 
-/* ----------------------------------- */
 
-.ytp-chrome-top-buttons {
-  display: none !important;
+.Filter_select {
+  min-width: 200px;
+
 }
 
-.ytp-chrome-top {
-  display: none !important;
-}
-
-.ytp-show-cards-title {
-  display: none !important;
+@media only screen and (max-width: 600px) {
+  .Filter_select {
+    width: 150px;
+  }
 }
 
 /* ----------- Loading ------------- */

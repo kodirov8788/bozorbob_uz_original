@@ -1,13 +1,18 @@
 /* eslint-disable @next/next/no-css-tags */
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import Link from "next/link";
 import filterSearch from "../../utils/filterSearch";
 import { useRouter } from "next/router";
 import { BsThreeDots } from "react-icons/bs";
 import { DataContext } from "../../store/GlobalState";
 import en from "../../locales/en";
+import { GrPersonalComputer } from "react-icons/gr"
+import { BiGridSmall } from "react-icons/bi"
+import { GiCakeSlice } from "react-icons/gi"
+import { FaRegFileVideo } from "react-icons/fa"
+import { ImBooks } from "react-icons/im"
 import uz from "../../locales/uz";
 const MediaCategory = () => {
   const { state } = useContext(DataContext);
@@ -17,8 +22,7 @@ const MediaCategory = () => {
   const t = locale === "en" ? en : uz;
   const [status, setStatus] = useState(false);
   const [categoryId, setCategoryId] = useState("");
-  console.log("router", pathname);
-
+  const scrollPreview = useRef();
   useEffect(() => {
     locale === "en"
       ? setCategoryId("Category")
@@ -34,14 +38,12 @@ const MediaCategory = () => {
 
   };
 
+
   return (
     <>
-      <div className="mediaCategory_container">
-        <li className="mediaCategory_listItem" onClick={click}
-        >
-          <p>All</p>
 
-        </li>
+      <div className="mediaCategory_container" >
+
         {categories.map((item) => (<>
           <li className="mediaCategory_listItem"
             onClick={() =>
@@ -51,7 +53,16 @@ const MediaCategory = () => {
             key={item._id}
             value={item._id}
           >
-            <p>{item.name}</p>
+            <span> {item.name === "technology" && <><GrPersonalComputer /><b>{item.name}</b>
+            </>
+            }
+              {item.name === "shirinliklar" && <><GiCakeSlice /><b>{item.name}</b>
+              </>}
+              {item.name === "video courses" && <><FaRegFileVideo /><b>{item.name}</b>
+              </>}
+              {item.name === "Books" && <><ImBooks /><b>{item.name}</b>
+              </>}
+            </span>
           </li>
         </>))}
 

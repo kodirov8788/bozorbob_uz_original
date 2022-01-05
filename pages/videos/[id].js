@@ -82,6 +82,7 @@ const Videos = () => {
             config={{
               file: {
                 attributes: {
+                  onContextMenu: e => e.preventDefault(),
                   preload: "auto",
                   controlsList: 'nodownload'
                 }

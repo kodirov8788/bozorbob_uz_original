@@ -31,7 +31,6 @@ const Category = () => {
     locale === "en"
       ? setCategoryId("Category")
       : setCategoryId("kategoriyalar")
-
   };
   return (
     <>

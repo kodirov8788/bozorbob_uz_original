@@ -151,10 +151,10 @@ const Home = (props) => {
           </button>
         </div>
       )}
+      <MediaCategory />
       <div className="price_option">
         <Filter />
       </div>
-      <MediaCategory />
       {shirinliklar.length !== 0 ? (
         <div className="product__slick">
           <h1>{t.product}</h1>

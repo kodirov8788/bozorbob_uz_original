@@ -12,9 +12,9 @@ const Filter = () => {
 
   return (
     <div className="filter__filter">
-      <div className="input-group-prepend col-md-2 px-0 mt-2">
+      <div className="">
         <select
-          className="custom-select text-capitalize"
+          className="Filter_select"
           value={sort}
           onChange={handleSort}
         >
@@ -25,7 +25,7 @@ const Filter = () => {
           <option value="price">Price: Low-Hight</option>
         </select>
       </div>
-    </div>
+    </div >
   );
 };
 
