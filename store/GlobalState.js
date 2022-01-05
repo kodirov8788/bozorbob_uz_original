@@ -13,13 +13,13 @@ export const DataProvider = ({ children }) => {
     orders: [],
     users: [],
     categories: [],
-    isClick: true,
+    isSearchClick: false,
   };
 
   const [state, dispatch] = useReducer(reducers, initialState);
-  const { cart, auth } = state;
-  // const [setIsClick] = useState(initialState.isClick);
-
+  const { isSearchClick, cart, auth } = state;
+  // const [isSearchClick] = useState(initialState.isSearchClick);
+  // console.log("isSearchClick", isSearchClick);
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
     if (firstLogin) {

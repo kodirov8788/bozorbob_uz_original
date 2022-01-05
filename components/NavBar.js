@@ -97,11 +97,10 @@ function NavBar() {
 				</div>
 
 				<div
-					className={`${
-						userOpen
-							? "navbar__customList"
-							: "navbar__customList navbar__customList__non"
-					}`}
+					className={`${userOpen
+						? "navbar__customList"
+						: "navbar__customList navbar__customList__non"
+						}`}
 				>
 					<Link href="/profile">
 						<a className="navbar__userlistItem">Profile</a>
@@ -117,13 +116,11 @@ function NavBar() {
 
 	const { locale } = router;
 	const t = locale === "en" ? en : uz;
-	// console.log(language);
 	return (
 		<>
 			<nav
-				className={`${
-					!show ? "navbar" : "navbar navbar__color"
-				} navbar-expand-lg`}
+				className={`${!show ? "navbar" : "navbar navbar__color"
+					} navbar-expand-lg`}
 			>
 				<Link href="/">
 					<div className="navbar__brandContainer">
@@ -162,7 +159,7 @@ function NavBar() {
 						)}
 					</div>
 					<a href="tel:+998939427899" className="nav__phone">
-						<h4>(93) 942-78-99</h4>
+						<b>(93) 942-78-99</b>
 					</a>
 				</div>
 			</nav>

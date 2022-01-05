@@ -32,6 +32,16 @@
   /* border: 1px solid red; */
   border-radius: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  cursor: pointer;
+  transition: transform 0.10s linear;
+  font-size: 16px;
+}
+
+.mediaCategory_listItem:hover {
+  transform: scale(1.03);
+  font-size: 16px;
+  outline: 2px solid var(--main-color);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .mediaCategory_listItem span {

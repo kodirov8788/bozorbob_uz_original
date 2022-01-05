@@ -21,8 +21,9 @@ const Home = (props) => {
   const [page, setPage] = useState(1);
   const router = useRouter();
   const { state, dispatch } = useContext(DataContext);
-  const { auth } = state;
-
+  const { auth, isSearchClick } = state;
+  const SearchClick = isSearchClick.isSearchClick
+  console.log("isSearchClick", SearchClick);
   const shirinliklar = [];
   const technology = [];
   useEffect(() => {
@@ -125,7 +126,10 @@ const Home = (props) => {
       <Head>
         <title>Home Page</title>
       </Head>
-      <Banner />
+      {
+        isSearchClick.isSearchClick !== true && <Banner />
+      }
+
       {auth.user && auth.user.role === "admin" && (
         <div
           className="delete_all btn btn-danger mt-2"
@@ -151,7 +155,10 @@ const Home = (props) => {
           </button>
         </div>
       )}
-      <MediaCategory />
+      {
+        SearchClick !== true && <MediaCategory />
+      }
+      {/* <MediaCategory /> */}
       <div className="price_option">
         <Filter />
       </div>

@@ -25,10 +25,11 @@
   outline: none;
   border: 2px solid transparent;
 }
+
 .search__form button {
   position: absolute;
-  padding: 0  0px ;
-  right: 0px;
+  padding: 0 0px;
+  right: 3px;
   width: 25px;
   height: 25px;
   display: grid;
@@ -41,11 +42,13 @@
   border: 1px solid #ccc;
   /* border-radius: 4px; */
 }
+
 .search__form button:active {
   background-color: #ccc;
   border: 1px solid #000;
   outline: 3px solid var(--main-color);
 }
+
 .search__form button svg {
   transition: transform 0.2s linear;
   font-size: 16px;
@@ -55,6 +58,7 @@
 .search__form:hover button svg {
   transform: scale(1.2);
 }
+
 .nav-item {
   border: 1px solid #000;
   position: relative;

@@ -5,15 +5,36 @@ import filterSearch from "../utils/filterSearch";
 import { useRouter } from "next/router";
 
 const Search = () => {
+  const { state, dispatch } = useContext(DataContext);
+  const { isSearchClick, cart } = state;
+  // console.log("isSearchClick", isSearchClick);
+
   const router = useRouter();
   const [search, setSearch] = useState("");
   //   const { state, dispatch } = useContext(DataContext);
-
   useEffect(() => {
     if (search) {
       filterSearch({ router, search: search ? search.toLowerCase() : "all" });
     }
-  }, [router, search]);
+    if (search !== "") {
+      dispatch({
+        type: "SEARCHCLICK",
+        payload: {
+          isSearchClick: true
+        },
+      });
+    } else {
+      dispatch({
+        type: "SEARCHCLICK",
+        payload: {
+          isSearchClick: false
+        },
+      });
+    }
+  }, [search]);
+  console.log("search", search);
+
+
 
   const hundleBtn = (e) => {
     e.preventDefault();

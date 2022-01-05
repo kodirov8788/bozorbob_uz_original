@@ -16,6 +16,7 @@
 .navbar__brandContainer {
   display: flex;
   margin-left: 10px;
+  margin-right: 5%;
 }
 
 .navbar__dot {
@@ -91,12 +92,15 @@ a {
   margin-top: 5px;
   margin-right: 20px;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .navbar__cartLink b {
   position: absolute;
-  padding: 0px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 5px 2px 5px;
   background-color: #ed143dc2;
   border-radius: 50%;
   margin-right: 20px;
@@ -175,6 +179,10 @@ a {
   display: none;
 }
 
+.nav__phone p {
+  font-size: 14px;
+}
+
 .nav__phone:hover {
   transition: var(--main-transition);
   color: var(--main-color);
@@ -213,11 +221,11 @@ a {
 }
 
 .navbar__customList {
-  padding-top: 5px;
+  padding-top: 0;
   display: block;
   position: absolute;
-  background-color: #fff;
-  margin-top: 7px;
+  background-color: transparent;
+  margin-top: -4px;
   transform: scaleY(1);
   transform-origin: top;
   display: flex;
@@ -225,7 +233,6 @@ a {
   width: 150px;
   justify-content: space-around;
   transition: all 0.1s linear;
-
   border-radius: 4px;
 }
 
@@ -239,6 +246,9 @@ a {
   height: 20px;
   display: flex;
   align-items: center;
+  background: #fff;
+  border-radius: 4px;
+
 }
 
 .navbar__userlistItem:hover {
