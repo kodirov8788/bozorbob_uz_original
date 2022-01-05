@@ -1,8 +1,3 @@
-.home__page {
-  /* background-color: #f6f6f6; */
-  /* background-color: red; */
-}
-
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
