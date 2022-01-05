@@ -49,8 +49,19 @@ img {
 
 .Filter_select {
   min-width: 200px;
-
+  background: var(--main-color);
+  height: 35px;
+  border-radius: 4px;
 }
+
+.Filter_select option {
+  min-width: 200px;
+  background: #ccc;
+  height: 20px;
+}
+
+
+
 
 @media only screen and (max-width: 600px) {
   .Filter_select {

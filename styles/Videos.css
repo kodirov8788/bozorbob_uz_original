@@ -5,6 +5,7 @@
 
 .videos_left {
    flex: 0.7;
+   cursor: pointer;
 }
 
 .videos_right {
@@ -21,4 +22,5 @@
    z-index: 0;
    display: block;
    width: 100%;
+   cursor: pointer;
 }

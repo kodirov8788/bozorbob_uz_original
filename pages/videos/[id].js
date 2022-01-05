@@ -93,12 +93,31 @@ const Videos = () => {
         </div>
         <div className="videos_right">
           {videos.map((item, index) => (
-            <video key={index}
-              src={item}
-              className={`videos_card img-thumbnail rounded ${isActive(index)}`}
+            // <video key={index}
+            //   src={item}
+            //   className={`videos_card img-thumbnail rounded ${isActive(index)}`}
 
-              onClick={() => setTab(index)}>
-            </video>
+            //   onClick={() => setTab(index)}>
+            // </video>
+            <ReactPlayer
+              onClick={() => setTab(index)}
+              key={index}
+              className={`videos_card img-thumbnail rounded ${isActive(index)}`}
+              url={item}
+              // width="400px"
+              // height={pdfWidth}
+              playing={false}
+              controls={false}
+              config={{
+                file: {
+                  attributes: {
+                    onContextMenu: e => e.preventDefault(),
+                    preload: "auto",
+                    controlsList: 'nodownload'
+                  }
+                }
+              }}
+            />
           ))}
         </div>
       </div>
