@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    // BASE_URL: "https://bozorbob-uz.vercel.app/",
     BASE_URL: "https://www.bozorbob.uz/",
     // BASE_URL: "http://localhost:3000/",
     MONGODB_URL:
