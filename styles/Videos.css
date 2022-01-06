@@ -1,26 +1,75 @@
 .Videos_container {
-   width: 100%;
+   min-width: 100%;
+   min-height: 100vh;
+   background: #f2f2f2;
    display: flex;
+
 }
 
 .videos_left {
-   flex: 0.7;
+   flex: 0.6;
    cursor: pointer;
+   /* border: 2px solid #ccc; */
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+}
+
+.videos_mainVideoText {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   /* background: ; */
+
 }
 
 .videos_right {
-   flex: 0.3;
+   padding-top: 20px;
+   margin-left: 20px;
+   flex: 0.4;
    display: flex;
    flex-direction: column;
+   align-items: flex-start;
    overflow-y: scroll;
    z-index: 1;
-   position: relative;
+   /* position: relative; */
    height: 90vh;
+
+}
+
+.videos_cardContainer {
+   opacity: 0.8;
+   width: 100%;
+   display: flex;
 }
 
 .videos_card {
-   z-index: 0;
-   display: block;
-   width: 100%;
+   /* outline: 1px solid var(--main-color); */
+   width: 55%;
    cursor: pointer;
+   border: 4px solid transparent;
+   position: relative;
+   z-index: 0;
+}
+
+.videos_card svg {
+   position: absolute;
+   z-index: 1;
+   color: #fff;
+   width: 100%;
+   margin-top: 20%;
+   font-size: 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.videos_text {
+   padding-left: 10px;
+}
+
+.active {
+   border: 3px solid var(--main-color);
+   opacity: 1;
 }

@@ -9,8 +9,11 @@ import axios from "axios";
 import valid from "../utils/valid";
 import { patchData } from "../utils/fetchData";
 import ReactPlayer from "react-player";
+import { ImBooks } from "react-icons/im"
+import { BiLinkExternal } from "react-icons/bi"
+import { MdOutlineVideoLibrary } from "react-icons/md"
 import { imageUpload } from "../utils/imageUpload";
-import { BsArrowUpRight } from "react-icons/bs";
+import { FiDownload } from "react-icons/fi"
 const Profile = () => {
   const initialSate = {
     avatar: "",
@@ -22,14 +25,14 @@ const Profile = () => {
   const { avatar, name, password, cf_password } = data;
   const { state, dispatch } = useContext(DataContext);
   const { auth, notify, orders } = state;
-  const [dataArr, setDataArr] = useState([]);
+  const [dataBook, setDataBook] = useState([]);
   const [dataVideo, setDataVideo] = useState([]);
 
   useEffect(() => {
     const arr = ((orders.map(item => item.cart)).map(item => item.filter(item2 => item2.book)).map(item => item.length !== 0 ? item.map(item2 => item2) : ""))
     const arr2 = (arr.filter(item => item !== "").map(item => item[0]))
     let x = []
-    setDataArr(arr2)
+    setDataBook(arr2)
     const videoArr = orders.map(item => item.cart[0]).filter(ar => ar !== undefined)
     const videoArr2 = orders.map(item => item.cart[1]).filter(ar => ar !== undefined)
     const videoArr3 = orders.map(item => item.cart[2]).filter(ar => ar !== undefined)
@@ -41,15 +44,16 @@ const Profile = () => {
       (videoArr3.map(item => x.push(item))) +
       (videoArr4.map(item => x.push(item))) +
       (videoArr5.map(item => x.push(item)))
-    console.log("videoArr2 >:", videoArr2);
-    console.log("videoArr3 >:", videoArr3);
-    console.log("videoArr4 >:", videoArr4);
-    console.log("videoArr5 >:", videoArr5);
+    // console.log("videoArr2 >:", videoArr2);
+    // console.log("videoArr3 >:", videoArr3);
+    // console.log("videoArr4 >:", videoArr4);
+    // console.log("videoArr5 >:", videoArr5);
     const z = x.filter(arr => arr.video[0].video_1 !== "")
     console.log("z >>:", z);
     setDataVideo(z)
   }, [orders]);
 
+  console.log("dataBook >>>", dataBook)
   console.log("dataVideo >>>", dataVideo)
 
   useEffect(() => {
@@ -282,50 +286,47 @@ const Profile = () => {
           </div>
         </div>
       </section>
-      <table
-        className="table-bordered table-hover w-100"
-        style={{ cursor: "pointer" }}
-      >
-        <thead className="bg-light font-weight-bold">
-          <tr>
-            <td className="profile__table_header">Image</td>
-            <td className="profile__table_header">Title</td>
-            <td className="profile__table_header">View and Download</td>
-            <td className="profile__table_header">Price</td>
-            <td className="profile__table_header">Delete</td>
-          </tr>
-        </thead>
-        <tbody>
+      <div className="profile_itemContainer">
+        <div className="profile_collection_left" >
+          <li className="profile__listItemHeader">
+            <MdOutlineVideoLibrary />
+            <b>Videos Courses</b>
+          </li>
           {dataVideo.map((order, index) => (
-            <tr key={index}>
-              {/* <td className="profile__table">
-             
-                <img className="profile__table_img" src={item.images[0].url} alt={item.images[0].url} />
-              </td> */}
-              {/* <td className="profile__table">{item.title}</td> */}
-              <td className="profile__table">
-                <Link
-                  // href={`/order/${order._id}`}
-                  href={{
-                    pathname: `/videos/${order._id}`,
-                    query: {
-                      id: `${order._id}` // pass the id
-                    },
-                  }}
-                >
-                  <a>{order.title}</a>
-                </Link>
-              </td>
-
-
-              {/* <td className="profile__table"><a href={item.book} target="_link">Ko'rish va Tortish</a></td>
-              <td className="profile__table">{item.price}</td> */}
-              <td className="profile__table"><i className="fas fa-times text-danger"></i></td>
-            </tr>
+            <li className="profile__listItem" key={index}>
+              <Link
+                href={{
+                  pathname: `/videos/${order._id}`,
+                  query: {
+                    id: `${order._id}`
+                  },
+                }}>
+                <a>
+                  <span>{order.title}</span>
+                  <BiLinkExternal />
+                </a>
+              </Link>
+            </li>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </div>
+        <div className="profile_collection_left" >
+          <li className="profile__listItemHeader">
+            <ImBooks />
+            <b>Books</b>
+          </li>
+          {dataBook.map((book, index) => (
+            <>
+              <li className="profile__listItem" key={index}>
+                <a href={book.book} target="_link">
+                  <span>Ko'rish va Tortish</span>
+                  <FiDownload />
+                </a>
+              </li>
+            </>
+          ))}
+        </div>
+      </div>
+    </div >
   );
 };
 

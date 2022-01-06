@@ -2,6 +2,7 @@
 import Head from "next/head";
 import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../../store/GlobalState";
+import { BsPlayBtn } from "react-icons/bs"
 import ReactPlayer from "react-player";
 import { useRouter } from "next/router";
 
@@ -9,7 +10,6 @@ const Videos = () => {
   const { state, dispatch } = useContext(DataContext);
   const { orders, auth } = state;
   const router = useRouter();
-  const [orderDetail, setOrderDetail] = useState([]);
   const [dataVideo, setDataVideo] = useState([]);
   useEffect(() => {
     const arr = ((orders.map(item => item.cart)).map(item => item.filter(item2 => item2.book)).map(item => item.length !== 0 ? item.map(item2 => item2) : ""))
@@ -24,34 +24,19 @@ const Videos = () => {
       (videoArr3.map(item => x.push(item))) +
       (videoArr4.map(item => x.push(item))) +
       (videoArr5.map(item => x.push(item)))
-    // console.log("videoArr2 >:", videoArr2);
-    // console.log("videoArr3 >:", videoArr3);
-    // console.log("videoArr4 >:", videoArr4);
-    // console.log("videoArr5 >:", videoArr5);
     setDataVideo(x)
   }, [orders]);
   useEffect(() => {
     const newArr = dataVideo?.filter((order) => order._id === router.query.id);
     const newArr2 = newArr.length > 1 ? newArr[0] : newArr
     const newArr3 = newArr2.video !== undefined && newArr2.video;
-    // setOrderDetail(newArr3[0]);
     setVideo(newArr3[0])
+    setVideoTitle(newArr2.title)
   }, [dataVideo]);
-  // console.log("dataVideo >>>", dataVideo)
-  console.log("orderDetail >:", orderDetail);
-  // console.log("orders >:", orders);
-  // console.log("router.query.id >:", router.query.id);
-
-  const [pdfHeight, setPdfHeight] = useState("550")
-  const [pdfWidth, setPdfWidth] = useState("400")
   const [tab, setTab] = useState(0);
+  const [videoTitle, setVideoTitle] = useState();
+  console.log("videoTitle", videoTitle);
   const [video, setVideo] = useState();
-  // useEffect(() => {
-  //   const arrVideo = ((orders.map(item => item.cart)).map(item => item.filter(item2 => item2.video)).map(item => item.length !== 0 ? item.map(item2 => item2) : ""))
-  //   const arrVideo2 = (arrVideo.filter(item => item !== "").map(item => item[0]))
-  //   const arrVideo3 = ((arrVideo2.map(item => item.video[0])))
-  //   setVideo(arrVideo3[0])
-  // }, [orders]);
   const [videos, setVideos] = useState([]);
   useEffect(() => {
     let arr = []
@@ -60,11 +45,12 @@ const Videos = () => {
     }
     return setVideos(arr)
   }, [video])
-  // console.log("videos sadsad >>>", videos)
+  console.log("videos sadsad >>>", videos)
   const isActive = (index) => {
     if (tab === index) return " active";
     return "";
   };
+  console.log("tab", tab);
   return (
     <>
       <Head>
@@ -74,8 +60,8 @@ const Videos = () => {
         <div className="videos_left">
           <ReactPlayer
             url={videos[tab]}
-            width={pdfHeight}
-            height={pdfWidth}
+            width="600px"
+            height="400px"
             playing={false}
             playIcon={<button>Play</button>}
             controls={true}
@@ -89,35 +75,42 @@ const Videos = () => {
               }
             }}
           />
+          <div className="videos_mainVideoText">
+            <h3>{videoTitle}</h3>
+            <p>Lesson {tab + 1}</p>
+          </div>
 
         </div>
         <div className="videos_right">
           {videos.map((item, index) => (
-            // <video key={index}
-            //   src={item}
-            //   className={`videos_card img-thumbnail rounded ${isActive(index)}`}
+            <div className={`videos_cardContainer ${isActive(index)}`} key={index}>
+              <div className='videos_card'
+              >
+                {tab === index && <BsPlayBtn />}
 
-            //   onClick={() => setTab(index)}>
-            // </video>
-            <ReactPlayer
-              onClick={() => setTab(index)}
-              key={index}
-              className={`videos_card img-thumbnail rounded ${isActive(index)}`}
-              url={item}
-              // width="400px"
-              // height={pdfWidth}
-              playing={false}
-              controls={false}
-              config={{
-                file: {
-                  attributes: {
-                    onContextMenu: e => e.preventDefault(),
-                    preload: "auto",
-                    controlsList: 'nodownload'
-                  }
-                }
-              }}
-            />
+                <ReactPlayer
+                  onClick={() => setTab(index)}
+                  url={item}
+                  width="250px"
+                  height="142px"
+                  playing={false}
+                  controls={false}
+                  config={{
+                    file: {
+                      attributes: {
+                        onContextMenu: e => e.preventDefault(),
+                        preload: "auto",
+                        controlsList: 'nodownload'
+                      }
+                    }
+                  }}
+                />
+              </div>
+              <div className="videos_text">
+                <h4>Lesson {index + 1}</h4>
+                <p></p>
+              </div>
+            </div>
           ))}
         </div>
       </div>

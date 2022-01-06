@@ -5,24 +5,18 @@
   overflow-x: scroll;
   margin: 5px auto;
   padding: 0 5px;
-
 }
 
 .mediaCategory_container::-webkit-scrollbar {
-  /* display: none; */
-  background-color: darkgrey;
+  display: none;
+  /* background-color: darkgrey;
   outline: 1px solid slategrey;
-  height: 2px;
+  height: 2px; */
 }
 
 .mediaCategory_containe::-webkit-scrollbar {
   width: 2px;
 }
-
-/* .mediaCategory_containe::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
-} */
 
 .mediaCategory_listItem {
   list-style-type: none;
@@ -35,12 +29,14 @@
   cursor: pointer;
   transition: transform 0.10s linear;
   font-size: 16px;
+  border: 2px solid transparent;
+
 }
 
 .mediaCategory_listItem:hover {
   transform: scale(1.03);
   font-size: 16px;
-  outline: 2px solid var(--main-color);
+  border: 2px solid var(--main-color);
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -63,7 +59,7 @@
 }
 
 .mediaCategory_listItem:first-child {
-  margin-left: 0;
+  margin-left: 5px;
 }
 
 .mediaCategory_listItem:first-child {
