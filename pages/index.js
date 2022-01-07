@@ -23,7 +23,7 @@ const Home = (props) => {
   const { state, dispatch } = useContext(DataContext);
   const { auth, isSearchClick } = state;
   const SearchClick = isSearchClick.isSearchClick
-  console.log("isSearchClick", SearchClick);
+  // console.log("isSearchClick", SearchClick);
   const shirinliklar = [];
   const technology = [];
   useEffect(() => {

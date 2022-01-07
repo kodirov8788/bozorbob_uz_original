@@ -145,7 +145,7 @@ const Profile = () => {
       <Head>
         <title>Profile</title>
       </Head>
-      <section className="row text-secondary my-2">
+      <section className="row text-secondary my-2 mt-2">
         <div className="col-md-4">
           <h3 className="text-center text-uppercase">
             {auth.user.role === "user" ? "User Profile" : "Admin Profile"}

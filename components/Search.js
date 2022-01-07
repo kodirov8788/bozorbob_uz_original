@@ -32,7 +32,7 @@ const Search = () => {
       });
     }
   }, [search]);
-  console.log("search", search);
+  // console.log("search", search);
 
 
 

@@ -35,7 +35,7 @@ const Videos = () => {
   }, [dataVideo]);
   const [tab, setTab] = useState(0);
   const [videoTitle, setVideoTitle] = useState();
-  console.log("videoTitle", videoTitle);
+  // console.log("videoTitle", videoTitle);
   const [video, setVideo] = useState();
   const [videos, setVideos] = useState([]);
   useEffect(() => {
@@ -45,12 +45,22 @@ const Videos = () => {
     }
     return setVideos(arr)
   }, [video])
-  console.log("videos sadsad >>>", videos)
+  // console.log("videos sadsad >>>", videos)
   const isActive = (index) => {
     if (tab === index) return " active";
     return "";
   };
-  console.log("tab", tab);
+  // console.log("sdasda", screen);
+  const [width, setWidth] = useState("550px");
+  const [height, setHeight] = useState("400px");
+  const [selectWidth, setSelectWidth] = useState("250px");
+  const [selectHeight, setSelectHeight] = useState("142px");
+  useEffect(() => {
+    window.screen.width <= 760 && setWidth("350px") + setHeight("200px") + setSelectWidth("200px") + setSelectHeight("100px")
+  }, [window.screen.width]);
+  // console.log("width >>>", width);
+  // console.log("height >>>", height);
+  // console.log("window.screen.width", window.screen.width);
   return (
     <>
       <Head>
@@ -60,8 +70,8 @@ const Videos = () => {
         <div className="videos_left">
           <ReactPlayer
             url={videos[tab]}
-            width="600px"
-            height="400px"
+            width={width}
+            height={height}
             playing={false}
             playIcon={<button>Play</button>}
             controls={true}
@@ -91,8 +101,8 @@ const Videos = () => {
                 <ReactPlayer
                   onClick={() => setTab(index)}
                   url={item}
-                  width="250px"
-                  height="142px"
+                  width={selectWidth}
+                  height={selectHeight}
                   playing={false}
                   controls={false}
                   config={{
@@ -108,7 +118,7 @@ const Videos = () => {
               </div>
               <div className="videos_text">
                 <h4>Lesson {index + 1}</h4>
-                <p></p>
+                {/* <p></p> */}
               </div>
             </div>
           ))}

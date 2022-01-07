@@ -7,14 +7,18 @@
   justify-content: space-between;
   align-items: center;
   height: 65px;
+  background-color: #f3f3f3;
 }
+
 .mediafooter li:first-child {
   border-top-left-radius: 10px;
 }
+
 .mediafooter li:last-child {
   border-top-right-radius: 10px;
   border-right: none !important;
 }
+
 .mediafooter li {
   background-color: #f3f3f3;
   list-style: none;
@@ -68,12 +72,15 @@
     /* border-top-right-radius: 4px; */
     /* border-bottom-right-radius: 4px; */
   }
+
   .mediaFooter__status p {
     margin-top: 15px;
   }
+
   .mediaFooter__status:first-child {
     border-top-right-radius: 4px;
   }
+
   .mediaHide__status {
     transform: translateX(-400px);
     position: absolute;
@@ -90,9 +97,11 @@
     position: relative;
     width: 100%;
   }
+
   .media__footerSearch svg {
     font-size: 30px;
   }
+
   .media__footerSearchContainer {
     position: absolute;
     width: 100%;
@@ -105,6 +114,7 @@
     margin-bottom: 110px;
     background-color: #fff;
   }
+
   .media__footerSearchContainerFalse {
     transform: translateX(-1000px);
   }
@@ -112,10 +122,12 @@
   .media__footerSearchContainer svg {
     transition: transform 0.2s linear;
   }
+
   .media__footerSearchContainer:hover svg {
     transform: scale(1.2);
   }
-  .media__footerSearchContainer > input {
+
+  .media__footerSearchContainer>input {
     z-index: 1;
     width: 100%;
     background: none;
@@ -125,6 +137,7 @@
     outline: none;
     border: none;
   }
+
   .media__footerSearchContainer button {
     margin-top: 2px;
     right: 0px;
@@ -142,6 +155,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+
   /* ---------- media__footerUser ------- */
 
   .mediaFooter__userlistItem:last-child {
@@ -175,6 +189,7 @@
     transition: all 0.2s linear;
     border-radius: 4px;
   }
+
   .MediaFooter__customListAdmin {
     padding-top: 5px;
     display: block;
@@ -191,10 +206,12 @@
     transition: all 0.2s linear;
     border-radius: 4px;
   }
+
   .MediaFooter__customList__non {
     transform: translateX(1000px);
     margin-bottom: 125px;
   }
+
   .MediaFooter__customListAdmin__non {
     margin-bottom: 195px;
     transform: translateX(1000px);
@@ -208,10 +225,12 @@
     justify-content: center;
     align-items: center;
   }
+
   .mediaFooter__listItems svg {
     font-size: 30px;
     margin-top: 20px;
   }
+
   .mediaFooter__listItems:hover svg,
   .mediaFooter__listItems:active svg {
     color: var(--main-color) !important;
@@ -221,6 +240,7 @@
   .mediaFooter__listItems:hover p {
     color: #000;
   }
+
   /* .mediaFooter__logged {
     display: none;
   } */

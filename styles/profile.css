@@ -64,6 +64,7 @@
   width: 100%;
   margin-top: 20px;
   margin-bottom: 50px;
+
 }
 
 .profile_collection_left {
@@ -123,4 +124,33 @@
 
 .profile__listItem:hover a {
   color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  .profile_itemContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 100px;
+
+  }
+
+  .profile_collection_left {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .profile__listItemHeader {
+    padding: 0 5%;
+    height: 50px;
+  }
+
+  .profile__listItem a {
+    height: 50px;
+  }
+
+  .profile__page .avatar {
+    margin: 50px auto 5px auto;
+  }
 }

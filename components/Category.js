@@ -13,25 +13,53 @@ const Category = () => {
   const { state } = useContext(DataContext);
   const { categories } = state;
   const router = useRouter();
-  const { locale, pathname } = router;
+  const { locale, pathname, asPath } = router;
   const t = locale === "en" ? en : uz;
   const [status, setStatus] = useState(false);
-  const [categoryId, setCategoryId] = useState("");
-  console.log("router", pathname);
-
+  const [categoryName, setCategoryName] = useState("");
+  const [categoryId, setCategoryId] = useState(null);
+  // console.log("categoryName", categoryName);
+  // console.log("categoryId", categoryId);
   useEffect(() => {
     locale === "en"
-      ? setCategoryId("Category")
-      : setCategoryId("kategoriyalar")
+      ? setCategoryName("Category")
+      : setCategoryName("kategoriyalar")
   }, [locale]);
 
   const click = () => {
     filterSearch({ router, category: null });
     router.push({ pathname: '/' });
     locale === "en"
-      ? setCategoryId("Category")
-      : setCategoryId("kategoriyalar")
+      ? setCategoryName("Category")
+      : setCategoryName("kategoriyalar")
   };
+  let x = "? category ="
+  const sensor = () => {
+    if (asPath.includes('/?category') || asPath === "/") {
+      filterSearch({ router, category: categoryId })
+      // console.log("bor");
+    } else {
+      // console.log("Yo`q");
+
+      router.push({ pathname: '/' });
+      // let x = asPath.slice(asPath.indexOf("?"))
+      // console.log("x qsadsdads", x);
+      // router.asPath = x
+      // router.push({ pathname: x });
+      // filterSearch({ router, category: categoryId })
+
+      // if (asPath === "/") {
+
+      //   setTimeout(() => {
+      //     filterSearch({ router, category: categoryId })
+      //     console.log('This will run after 1 second!')
+      //   }, 1000);
+      // }
+
+    }
+    // router.push({ pathname: '/' });
+  };
+  // console.log("pathname >>>>>", router);
   return (
     <>
       <div
@@ -39,7 +67,7 @@ const Category = () => {
         onMouseEnter={() => setStatus(true)}
         onMouseLeave={() => setStatus(false)}
       >
-        <p> {categoryId} </p>
+        <p> {categoryName} </p>
         <div className={status ? "task__adderStatus" : "hide__status"}>
           <li className="status" onClick={click}
             onMouseEnter={() => setStatus(true)}
@@ -55,8 +83,10 @@ const Category = () => {
               onMouseEnter={() => setStatus(true)}
               onMouseLeave={() => setStatus(false)}
               onClick={() =>
-                setCategoryId(item.name) +
-                filterSearch({ router, category: item._id })
+                setCategoryName(item.name) +
+                setCategoryId(item._id) +
+                sensor()
+                // filterSearch({ router, category: item._id })
               }
               key={item._id}
               value={item._id}
