@@ -6,21 +6,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { DataContext } from "../store/GlobalState";
 import Cookie from "js-cookie";
-import { BsCartPlus, BsThreeDots } from "react-icons/bs";
-import { FiSearch } from "react-icons/fi";
-import { AiOutlineMenu } from "react-icons/ai";
-import filterSearch from "../utils/filterSearch";
+import { BsCartPlus } from "react-icons/bs";
 import { BiLogInCircle } from "react-icons/bi";
 import Category from "./Category";
 import Search from "./Search";
-import Filter from "./Filter";
 import en from "../locales/en";
 import uz from "../locales/uz";
 import LanguageSelect from "../pages/LanguageSelect";
 import MediaLanguageSelect from "../pages/MediaLanguageSelect";
 function NavBar() {
 	const router = useRouter();
-
 	const { state, dispatch } = useContext(DataContext);
 	const { auth, cart } = state;
 	const [show, setShow] = useState(false);
@@ -28,7 +23,6 @@ function NavBar() {
 	const email = auth.user?.email.match(/^.+(?=@)/)[0];
 	const emailCut =
 		email?.length < 10 ? email : email?.substr(0, 11 - 1) + "...";
-
 	const isActive = r => {
 		if (r === router.pathname) {
 			return " active";
@@ -43,9 +37,6 @@ function NavBar() {
 			setShow(false);
 		}
 	};
-
-	// console.log(click);
-
 	useEffect(() => {
 		window.addEventListener("scroll", transitionNavbar);
 		return () => window.removeEventListener("scroll", transitionNavbar);
@@ -58,7 +49,6 @@ function NavBar() {
 		dispatch({ type: "NOTIFY", payload: { success: "Logged out!" } });
 		return router.push("/");
 	};
-
 	const adminRouter = () => {
 		return (
 			<>
@@ -74,7 +64,6 @@ function NavBar() {
 			</>
 		);
 	};
-
 	const loggedRouter = () => {
 		return (
 			<div
@@ -114,7 +103,7 @@ function NavBar() {
 		);
 	};
 
-	const { locale } = router;
+	const { locale, pathname } = router;
 	const t = locale === "en" ? en : uz;
 	return (
 		<>
@@ -122,12 +111,10 @@ function NavBar() {
 				className={`${!show ? "navbar" : "navbar navbar__color"
 					} navbar-expand-lg`}
 			>
-				<Link href="/">
-					<div className="navbar__brandContainer">
-						<a className="navbar__brand">BozorBoB</a>
-						<div className="navbar__dot"></div>
-					</div>
-				</Link>
+				<div className="navbar__brandContainer" onClick={() => router.push({ pathname: '/' })}>
+					<a className="navbar__brand">BozorBoB</a>
+					<div className="navbar__dot"></div>
+				</div>
 
 				<div className="navbar__filter">
 					<Category />

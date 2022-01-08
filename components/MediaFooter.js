@@ -13,7 +13,7 @@ import uz from "../locales/uz";
 
 const MediaFooter = () => {
   const { state, dispatch } = useContext(DataContext);
-  const { categories, auth } = state;
+  const { categories, auth, categoryName } = state;
   const [logged, setLogged] = useState(false);
   useEffect(() => {
     const x = Object.keys(auth).length !== 0;
@@ -35,7 +35,7 @@ const MediaFooter = () => {
   // console.log("this is userClick", userClick);
   const click = () => {
     filterSearch({ router, category: null });
-    setCategoryId("Category");
+    router.push({ pathname: '/' });
   };
 
   useEffect(() => {
@@ -131,15 +131,17 @@ const MediaFooter = () => {
             <div
               href="/"
               className="mediaFooter__status"
-              onClick={() =>
-                setCategoryId(item.name) +
-                filterSearch({ router, category: item._id }) +
-                setStatus(false)
-              }
               key={item._id}
               value={item._id}
+              onClick={() =>
+                setStatus(false) +
+                dispatch({
+                  type: "CATEGORYNAME",
+                  payload: item.name
+                })
+              }
             >
-              <p>{item.name}</p>
+              <p>{categoryName}</p>
               {categoryId === item.name ? <b className="signal"></b> : ""}
             </div>
           ))}
@@ -175,14 +177,14 @@ const MediaFooter = () => {
       </li>
       <div
         className={`${userClick
-            ? `${auth.user?.role === "admin"
-              ? "MediaFooter__customListAdmin"
-              : `${logged ? "MediaFooter__customList" : ""}`
-            }`
-            : `${auth.user?.role === "admin"
-              ? "MediaFooter__customListAdmin MediaFooter__customListAdmin__non"
-              : "MediaFooter__customList MediaFooter__customList__non"
-            }`
+          ? `${auth.user?.role === "admin"
+            ? "MediaFooter__customListAdmin"
+            : `${logged ? "MediaFooter__customList" : ""}`
+          }`
+          : `${auth.user?.role === "admin"
+            ? "MediaFooter__customListAdmin MediaFooter__customListAdmin__non"
+            : "MediaFooter__customList MediaFooter__customList__non"
+          }`
           }`}
       >
         {logged && (

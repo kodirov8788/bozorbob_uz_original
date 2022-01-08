@@ -10,56 +10,29 @@ import { DataContext } from "../store/GlobalState";
 import en from "../locales/en";
 import uz from "../locales/uz";
 const Category = () => {
-  const { state } = useContext(DataContext);
-  const { categories } = state;
+  const { state, dispatch } = useContext(DataContext);
+  const { categories, categoryName, categoryId } = state;
+  // console.log("cate categoryName >>>:", categoryName);
   const router = useRouter();
   const { locale, pathname, asPath } = router;
   const t = locale === "en" ? en : uz;
   const [status, setStatus] = useState(false);
-  const [categoryName, setCategoryName] = useState("");
-  const [categoryId, setCategoryId] = useState(null);
-  // console.log("categoryName", categoryName);
-  // console.log("categoryId", categoryId);
+  const [categoryNames, setCategoryName] = useState("");
+  // const [categoryId, setCategoryId] = useState(null);
   useEffect(() => {
     locale === "en"
       ? setCategoryName("Category")
       : setCategoryName("kategoriyalar")
   }, [locale]);
-
-  const click = () => {
-    filterSearch({ router, category: null });
-    router.push({ pathname: '/' });
-    locale === "en"
-      ? setCategoryName("Category")
-      : setCategoryName("kategoriyalar")
-  };
+  // const click = () => {
+  //   filterSearch({ router, category: null });
+  //   router.push({ pathname: '/' });
+  // };
   let x = "? category ="
-  const sensor = () => {
-    if (asPath.includes('/?category') || asPath === "/") {
-      filterSearch({ router, category: categoryId })
-      // console.log("bor");
-    } else {
-      // console.log("Yo`q");
-
-      router.push({ pathname: '/' });
-      // let x = asPath.slice(asPath.indexOf("?"))
-      // console.log("x qsadsdads", x);
-      // router.asPath = x
-      // router.push({ pathname: x });
-      // filterSearch({ router, category: categoryId })
-
-      // if (asPath === "/") {
-
-      //   setTimeout(() => {
-      //     filterSearch({ router, category: categoryId })
-      //     console.log('This will run after 1 second!')
-      //   }, 1000);
-      // }
-
-    }
-    // router.push({ pathname: '/' });
-  };
-  // console.log("pathname >>>>>", router);
+  // const sensor = () => {
+  //   if (!asPath.includes('/?category') || asPath !== "/" || asPath !== "/?category=" || asPath !== "/?search=all&category")
+  //     router.push({ pathname: '/' });
+  // };
   return (
     <>
       <div
@@ -67,13 +40,14 @@ const Category = () => {
         onMouseEnter={() => setStatus(true)}
         onMouseLeave={() => setStatus(false)}
       >
-        <p> {categoryName} </p>
+        <p> {categoryName === "" ? categoryNames : categoryName} </p>
         <div className={status ? "task__adderStatus" : "hide__status"}>
-          <li className="status" onClick={click}
+          <li className="status" onClick={() => router.push({ pathname: '/' })
+            + filterSearch({ router, category: null })}
             onMouseEnter={() => setStatus(true)}
             onMouseLeave={() => setStatus(false)}>
             <p>All</p>
-            <div className={`${categoryId === "Category" || categoryId === "kategoriyalar" ? "signal" : ""}`}></div>
+            <div className={`${categoryName === "Category" || categoryName === "kategoriyalar" ? "signal" : ""}`}></div>
           </li>
 
           {categories.map((item) => (
@@ -83,16 +57,20 @@ const Category = () => {
               onMouseEnter={() => setStatus(true)}
               onMouseLeave={() => setStatus(false)}
               onClick={() =>
-                setCategoryName(item.name) +
-                setCategoryId(item._id) +
-                sensor()
+                // setCategoryName(item.name) +
+                // setCategoryId(item._id) +
+                // sensor() +
+                dispatch({
+                  type: "CATEGORYID",
+                  payload: item._id,
+                })
                 // filterSearch({ router, category: item._id })
               }
               key={item._id}
               value={item._id}
             >
               <p>{item.name}</p>
-              {categoryId === item.name ? <b className="signal"></b> : ""}
+              {categoryName === item.name ? <b className="signal"></b> : ""}
             </div>
           ))}
         </div>

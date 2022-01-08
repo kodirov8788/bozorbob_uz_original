@@ -37,6 +37,16 @@ const reducers = (state, action) => {
         ...state,
         users: action.payload,
       };
+    case ACTIONS.CATEGORYNAME:
+      return {
+        ...state,
+        categoryName: action.payload,
+      };
+    case ACTIONS.CATEGORYID:
+      return {
+        ...state,
+        categoryId: action.payload,
+      };
     case ACTIONS.ADD_CATEGORIES:
       return {
         ...state,

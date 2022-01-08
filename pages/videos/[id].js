@@ -47,7 +47,7 @@ const Videos = () => {
   }, [video])
   // console.log("videos sadsad >>>", videos)
   const isActive = (index) => {
-    if (tab === index) return " active";
+    if (tab === index) return " videoActive";
     return "";
   };
   // console.log("sdasda", screen);

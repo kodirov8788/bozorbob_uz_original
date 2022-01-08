@@ -1,10 +1,12 @@
 import { createContext, useReducer, useState, useEffect } from "react";
 import reducers from "./Reducers";
 import { getData } from "../utils/fetchData";
-
+import { useRouter } from "next/router";
+import filterSearch from "../utils/filterSearch";
 export const DataContext = createContext();
-
 export const DataProvider = ({ children }) => {
+  const router = useRouter();
+  const { locale, asPath } = router;
   const initialState = {
     notify: {},
     auth: {},
@@ -13,13 +15,41 @@ export const DataProvider = ({ children }) => {
     orders: [],
     users: [],
     categories: [],
+    categoryName: "",
+    categoryId: null,
     isSearchClick: false,
   };
-
   const [state, dispatch] = useReducer(reducers, initialState);
-  const { isSearchClick, cart, auth } = state;
-  // const [isSearchClick] = useState(initialState.isSearchClick);
-  // console.log("isSearchClick", isSearchClick);
+  const { cart, auth, categoryName, categoryId, categories } = state;
+  const homePathName = (asPath === "/")
+  useEffect(() => {
+    filterSearch({ router, category: categoryId })
+  }, [categoryId])
+  useEffect(() => {
+    let categorys = categories.filter(item => (item._id === categoryId && item.name))
+    if (categorys.length !== 0) {
+      dispatch({
+        type: "CATEGORYNAME",
+        payload:
+          categorys[0].name
+      })
+    }
+  }, [categoryId, homePathName])
+  useEffect(() => {
+    if (homePathName === true || categoryId === "" || categoryId === null)
+      locale === "en" ?
+        dispatch({
+          type: "CATEGORYNAME",
+          payload:
+            "Category"
+        }) :
+        dispatch({
+          type: "CATEGORYNAME",
+          payload:
+            "kategoriyalar",
+        })
+  }, [locale, homePathName, categoryName, categoryId]);
+
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
     if (firstLogin) {
