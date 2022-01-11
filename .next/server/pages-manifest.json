@@ -4,5 +4,9 @@
   "/_error": "pages/_error.js",
   "/": "pages/index.js",
   "/api/product": "pages/api/product.js",
-  "/api/categories": "pages/api/categories.js"
+  "/api/categories": "pages/api/categories.js",
+  "/api/auth/accessToken": "pages/api/auth/accessToken.js",
+  "/api/auth/login": "pages/api/auth/login.js",
+  "/api/order": "pages/api/order.js",
+  "/api/user": "pages/api/user.js"
 }

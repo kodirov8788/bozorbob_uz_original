@@ -40,10 +40,11 @@ const ProductsManager = () => {
   }, [category]);
 
   useEffect(() => {
-    if (categoryArr == ('video cources')) {
+    if (categoryArr == ('video courses')) {
       setVideoInput(true), setPdfInput(false);
     } else if (categoryArr == ('Books')) { setPdfInput(true), setVideoInput(false) } else { setPdfInput(false), setVideoInput(false) }
   }, [categoryArr]);
+  console.log("categoryArr", categoryArr);
   console.log("videoInput", videoInput);
   console.log("pdfInput", pdfInput);
   // --------------- end of video upload--------------------
