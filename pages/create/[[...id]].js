@@ -627,7 +627,7 @@ const ProductsManager = () => {
                       type="text"
                       name="videoModule_14"
                       value={videoMudule.videoModule_14}
-                      placeholder="videoModule_4 link"
+                      placeholder="videoModule_14 link"
                       className=""
                       onChange={handleVideoInputModule}
                     />
@@ -637,7 +637,7 @@ const ProductsManager = () => {
                       type="text"
                       name="videoModule_15"
                       value={videoMudule.videoModule_15}
-                      placeholder="videoModule_5 link"
+                      placeholder="videoModule_15 link"
                       className=""
                       onChange={handleVideoInputModule}
                     />
@@ -647,7 +647,7 @@ const ProductsManager = () => {
                       type="text"
                       name="videoModule_16"
                       value={videoMudule.videoModule_16}
-                      placeholder="videoModule_6 link"
+                      placeholder="videoModule_16 link"
                       className=""
                       onChange={handleVideoInputModule}
                     />
