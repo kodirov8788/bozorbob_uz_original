@@ -83,6 +83,7 @@ const createProduct = async (req, res) => {
 
     const {
       video,
+      videoMudule,
       book,
       sale,
       title,
@@ -114,6 +115,7 @@ const createProduct = async (req, res) => {
       category,
       images,
       video,
+      videoMudule,
       book,
       sale,
       book_view,

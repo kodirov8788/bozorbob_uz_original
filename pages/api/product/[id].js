@@ -43,6 +43,7 @@ const updateProduct = async (req, res) => {
     const {
       sale,
       video,
+      videoMudule,
       book,
       title,
       price,
@@ -51,7 +52,6 @@ const updateProduct = async (req, res) => {
       content,
       category,
       images,
-      // videos,
       book_view,
     } = req.body;
 
@@ -76,8 +76,8 @@ const updateProduct = async (req, res) => {
         content,
         category,
         images,
-        // videos,
         video,
+        videoMudule,
         book,
         sale,
         book_view,

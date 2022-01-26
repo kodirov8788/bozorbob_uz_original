@@ -32,10 +32,9 @@ const productSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
-    // videos: {
-    //   type: Array,
-    //   required: true,
-    // },
+    videoMudule: {
+      type: Array,
+    },
     category: {
       type: String,
       required: true,

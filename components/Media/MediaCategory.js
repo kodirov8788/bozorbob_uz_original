@@ -7,9 +7,9 @@ import filterSearch from "../../utils/filterSearch";
 import { useRouter } from "next/router";
 import { DataContext } from "../../store/GlobalState";
 import en from "../../locales/en";
-import { GrPersonalComputer } from "react-icons/gr"
-import { BiGridSmall } from "react-icons/bi"
-import { GiCakeSlice } from "react-icons/gi"
+import { MdBusinessCenter } from "react-icons/md"
+import { AiFillGift } from "react-icons/ai"
+import { RiRadioButtonLine } from "react-icons/ri"
 import { FaRegFileVideo } from "react-icons/fa"
 import { ImBooks } from "react-icons/im"
 import uz from "../../locales/uz";
@@ -37,14 +37,16 @@ const MediaCategory = () => {
           key={item._id}
           value={item._id}
         >
-          <span> {item.name === "technology" && <><GrPersonalComputer /><b>{item.name}</b>
+          <span> {item.name === "Business" && <><MdBusinessCenter /><b>{item.name}</b>
           </>
           }
-            {item.name === "shirinliklar" && <><GiCakeSlice /><b>{item.name}</b>
+            {item.name === "Online Business" && <><RiRadioButtonLine /><b>{item.name}</b>
             </>}
             {item.name === "video courses" && <><FaRegFileVideo /><b>{item.name}</b>
             </>}
             {item.name === "Books" && <><ImBooks /><b>{item.name}</b>
+            </>}
+            {item.name === "Gifts" && <><AiFillGift /><b>{item.name}</b>
             </>}
           </span>
         </li>
