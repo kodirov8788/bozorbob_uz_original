@@ -591,7 +591,7 @@ const ProductsManager = () => {
                   </div>
                 </div>
                 <div className="create__videosInputCollection">
-                  <label htmlFor="video link">Videos Module Collection 2</label>
+                  <label htmlFor="video link">Module Group 2</label>
                   <div className="">
                     <input
                       type="text"
@@ -695,7 +695,7 @@ const ProductsManager = () => {
                 </div>
 
                 <div className="create__videosInputCollection">
-                  <label htmlFor="video link">Videos Module Collection 3</label>
+                  <label htmlFor="video link">Module Group 3</label>
                   <div className="">
                     <input
                       type="text"
@@ -799,7 +799,7 @@ const ProductsManager = () => {
                 </div>
 
                 <div className="create__videosInputCollection">
-                  <label htmlFor="video link">Videos Module Collection 4</label>
+                  <label htmlFor="video link">Module Group 4</label>
                   <div className="">
                     <input
                       type="text"
@@ -903,7 +903,7 @@ const ProductsManager = () => {
                 </div>
 
                 <div className="create__videosInputCollection">
-                  <label htmlFor="video link">Videos Module Collection 5</label>
+                  <label htmlFor="video link">Module Group 5</label>
                   <div className="">
                     <input
                       type="text"
