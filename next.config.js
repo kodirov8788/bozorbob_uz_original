@@ -1,6 +1,5 @@
 module.exports = {
   env: {
-    // BASE_URL: "https://bozorbob-uz.vercel.app/",
     BASE_URL: "https://www.bozorbob.uz/",
     // git config --global http.version HTTP/1.1
     // BASE_URL: "http://localhost:3000/",
