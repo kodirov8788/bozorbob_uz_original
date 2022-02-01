@@ -12,11 +12,11 @@ export const ACTIONS = {
 };
 
 export const addToCart = (product, cart) => {
-  if (product.inStock === 0)
-    return {
-      type: "NOTIFY",
-      payload: { error: "This product is out of stock." },
-    };
+  // if (product.inStock === 0)
+  //   return {
+  //     type: "NOTIFY",
+  //     payload: { error: "This product is out of stock." },
+  //   };
 
   const check = cart.every((item) => {
     return item._id !== product._id;

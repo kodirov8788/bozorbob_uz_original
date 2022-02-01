@@ -11,6 +11,9 @@ const Videos = () => {
   const { orders, auth } = state;
   const router = useRouter();
   const [dataVideo, setDataVideo] = useState([]);
+  console.log("dataVideo >>>", dataVideo)
+  const [video, setVideo] = useState();
+
   useEffect(() => {
     const arr = ((orders.map(item => item.cart)).map(item => item.filter(item2 => item2.book)).map(item => item.length !== 0 ? item.map(item2 => item2) : ""))
     let x = []
@@ -29,28 +32,32 @@ const Videos = () => {
   useEffect(() => {
     const newArr = dataVideo?.filter((order) => order._id === router.query.id);
     const newArr2 = newArr.length > 1 ? newArr[0] : newArr
-    const newArr3 = newArr2.video !== undefined && newArr2.video;
-    setVideo(newArr3[0])
+    const newArr3 = newArr2[0]?.video[0]
+    const newArr4 = newArr2[0]?.videoModule[0]
+    const newArr5 = newArr3?.video_1 !== "" ? newArr3 : newArr4
+    setVideo(newArr5)
     setVideoTitle(newArr2.title)
+
   }, [dataVideo]);
+  // console.log("video >>>", video);
+
   const [tab, setTab] = useState(0);
   const [videoTitle, setVideoTitle] = useState();
-  // console.log("videoTitle", videoTitle);
-  const [video, setVideo] = useState();
+  console.log("videoTitle >>>", videoTitle);
   const [videos, setVideos] = useState([]);
   useEffect(() => {
     let arr = []
     for (let key in video) {
       arr.push(video[key])
     }
-    return setVideos(arr)
+    const arr2 = arr.filter(item => item !== "")
+    return setVideos(arr2)
   }, [video])
-  // console.log("videos sadsad >>>", videos)
+  console.log("videos >>>", videos)
   const isActive = (index) => {
     if (tab === index) return " videoActive";
     return "";
   };
-  // console.log("sdasda", screen);
   const [width, setWidth] = useState("550px");
   const [height, setHeight] = useState("400px");
   const [selectWidth, setSelectWidth] = useState("250px");
@@ -58,9 +65,7 @@ const Videos = () => {
   useEffect(() => {
     window.screen.width <= 760 && setWidth("350px") + setHeight("200px") + setSelectWidth("200px") + setSelectHeight("100px")
   }, [window.screen.width]);
-  // console.log("width >>>", width);
-  // console.log("height >>>", height);
-  // console.log("window.screen.width", window.screen.width);
+
   return (
     <>
       <Head>

@@ -5,8 +5,8 @@ import Modal from "./Modal";
 import MediaFooter from "./MediaFooter";
 import MediaNavBar from "./Media/MediaNavBar";
 import AboutSidebar from "./AboutSidebar";
-import Link from "next/link";
-import LanguageSelect from "../pages/LanguageSelect";
+// import Link from "next/link";
+// import LanguageSelect from "../pages/LanguageSelect";
 import { useRouter } from "next/router";
 
 function Layout({ children }) {

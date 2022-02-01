@@ -43,11 +43,10 @@ const updateProduct = async (req, res) => {
     const {
       sale,
       video,
-      videoMudule,
+      videoModule,
       book,
       title,
       price,
-      inStock,
       description,
       content,
       category,
@@ -58,7 +57,6 @@ const updateProduct = async (req, res) => {
     if (
       !title ||
       !price ||
-      !inStock ||
       !description ||
       !content ||
       category === "all" ||
@@ -71,13 +69,13 @@ const updateProduct = async (req, res) => {
       {
         title: title.toLowerCase(),
         price,
-        inStock,
+        // inStock,
         description,
         content,
         category,
         images,
         video,
-        videoMudule,
+        videoModule,
         book,
         sale,
         book_view,

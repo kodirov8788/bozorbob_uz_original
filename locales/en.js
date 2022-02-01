@@ -19,7 +19,7 @@ export default {
   Sign__in: "Sign in",
   Categories: "Categories",
   price: "Price",
-  InStock: "In Stock",
+  // InStock: "In Stock",
   sold: "Sold",
   edit: "Edit",
   view: "View",

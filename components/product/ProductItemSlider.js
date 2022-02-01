@@ -33,7 +33,7 @@ const ProductItem__slider = ({ product, handleCheck }) => {
         </Link>
         <button
           className="btn__buy"
-          disabled={product.inStock === 0 ? true : false}
+          // disabled={product.inStock === 0 ? true : false}
           onClick={() => dispatch(addToCart(product, cart))}
         >
           <BsFillCartPlusFill />

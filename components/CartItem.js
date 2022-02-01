@@ -25,11 +25,11 @@ const CartItem = ({ item, dispatch, cart }) => {
         </h5>
 
         <h6 className="text-danger">${item.quantity * item.price}</h6>
-        {item.inStock > 0 ? (
+        {/* {item.inStock > 0 ? (
           <p className="mb-1 text-danger">In Stock: {item.inStock}</p>
         ) : (
           <p className="mb-1 text-danger">Out Stock</p>
-        )}
+        )} */}
       </td>
 
       <td
@@ -52,7 +52,7 @@ const CartItem = ({ item, dispatch, cart }) => {
         <button
           className="btn btn-outline-secondary"
           onClick={() => dispatch(increase(cart, item._id))}
-          disabled={item.quantity === item.inStock ? true : false}
+        // disabled={item.quantity === item.inStock ? true : false}
         >
           {" "}
           +{" "}

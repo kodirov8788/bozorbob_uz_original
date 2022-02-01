@@ -33,7 +33,7 @@ const ProductItem = ({ product, handleCheck }) => {
         </Link>
         <button
           className="btn__buy"
-          disabled={product.inStock === 0 ? true : false}
+          // disabled={product.inStock === 0 ? true : false}
           onClick={() => dispatch(addToCart(product, cart))}
         >
           <BsFillCartPlusFill />
@@ -104,7 +104,7 @@ const ProductItem = ({ product, handleCheck }) => {
           {salebox && (
             <span className="productItem__actualPrice"> $ {product.price}</span>
           )}
-          <span className={salebox && " productItem__SalePrice"}>
+          <span className={`${salebox && " productItem__SalePrice"}`}>
             $
             {salebox && product.sale
               ? product.price - (product.price / 100) * product.sale

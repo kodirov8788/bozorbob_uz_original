@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
-    videoMudule: {
+    videoModule: {
       type: Array,
     },
     category: {
@@ -42,10 +42,6 @@ const productSchema = new mongoose.Schema(
     checked: {
       type: Boolean,
       default: false,
-    },
-    inStock: {
-      type: Number,
-      default: 0,
     },
     sold: {
       type: Number,

@@ -19,7 +19,7 @@ export default {
   Sign__in: "Saytga tashrif",
   Categories: "Toifalar",
   price: "Narxi",
-  InStock: "Sotuvda qolgani",
+  // InStock: "Sotuvda qolgani",
   sold: "Sotildi",
   edit: "O'zgartirish",
   view: "Ko'rish",

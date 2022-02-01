@@ -50,7 +50,8 @@ const createOrder = async (req, res) => {
     });
 
     cart.filter((item) => {
-      return sold(item._id, item.quantity, item.inStock, item.sold);
+      return sold(item._id, item.quantity,
+        item.sold);
     });
 
     await newOrder.save();
@@ -64,11 +65,11 @@ const createOrder = async (req, res) => {
   }
 };
 
-const sold = async (id, quantity, oldInStock, oldSold) => {
+const sold = async (id, quantity, oldSold) => {
   await Products.findOneAndUpdate(
     { _id: id },
     {
-      inStock: oldInStock - quantity,
+      // inStock: oldInStock - quantity,
       sold: quantity + oldSold,
     }
   );

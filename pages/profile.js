@@ -29,6 +29,8 @@ const Profile = () => {
   const [dataVideo, setDataVideo] = useState([]);
 
   useEffect(() => {
+    // console.log("orders >:", orders);
+
     const arr = ((orders.map(item => item.cart)).map(item => item.filter(item2 => item2.book)).map(item => item.length !== 0 ? item.map(item2 => item2) : ""))
     const arr2 = (arr.filter(item => item !== "").map(item => item[0]))
     let x = []
@@ -39,7 +41,8 @@ const Profile = () => {
     const videoArr4 = orders.map(item => item.cart[3]).filter(ar => ar !== undefined)
     const videoArr5 = orders.map(item => item.cart[4]).filter(ar => ar !== undefined)
 
-    const arrr = (videoArr.map(item => x.push(item))) +
+    const arrr = (
+      videoArr.map(item => x.push(item))) +
       (videoArr2.map(item => x.push(item))) +
       (videoArr3.map(item => x.push(item))) +
       (videoArr4.map(item => x.push(item))) +
@@ -48,12 +51,19 @@ const Profile = () => {
     // console.log("videoArr3 >:", videoArr3);
     // console.log("videoArr4 >:", videoArr4);
     // console.log("videoArr5 >:", videoArr5);
-    const z = x.filter(arr => arr.video[0].video_1 !== "")
-    console.log("z >>:", z);
-    setDataVideo(z)
+    const array = []
+    const defaultVideos = x.filter(arr => arr.video[0].video_1 !== "")
+    const moduleVideos = x.filter(arr => arr.videoModule[0].videoModule_1 !== "")
+    // console.log("z >>:", z);
+    // console.log("xs >>:", xs);
+    // array.push(z)
+    moduleVideos.forEach(item => { array.push(item) })
+    defaultVideos.forEach(item => { array.push(item) })
+    setDataVideo(array)
+
   }, [orders]);
 
-  console.log("dataBook >>>", dataBook)
+  // console.log("dataBook >>>", dataBook)
   console.log("dataVideo >>>", dataVideo)
 
   useEffect(() => {

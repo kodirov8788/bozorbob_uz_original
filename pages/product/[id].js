@@ -5,7 +5,7 @@ import { useState, useContext, useEffect } from "react";
 import { getData } from "../../utils/fetchData";
 import { DataContext } from "../../store/GlobalState";
 import { addToCart } from "../../store/Actions";
-import axios from "axios";
+// import axios from "axios";
 import ReactPlayer from "react-player";
 import { useRouter } from "next/router";
 import en from "../../locales/en";
@@ -86,13 +86,13 @@ const DetailProduct = (props) => {
         </h5>
 
         <div className="row mx-0 d-flex justify-content-between">
-          {product.inStock > 0 ? (
+          {/* {product.inStock > 0 ? (
             <h6 className="text-danger">
               {t.InStock}: {product.inStock}
             </h6>
           ) : (
             <h6 className="text-danger">Out Stock</h6>
-          )}
+          )} */}
           {/* 
           <h6 className="text-danger">
             {t.sold}: {product.sold}

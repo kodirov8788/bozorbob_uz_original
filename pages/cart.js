@@ -27,7 +27,6 @@ const Cart = () => {
       const res = cart.reduce((prev, item) => {
         return prev + item.price * item.quantity;
       }, 0);
-
       setTotal(res);
     };
 
@@ -41,26 +40,38 @@ const Cart = () => {
       const updateCart = async () => {
         for (const item of cartLocal) {
           const res = await getData(`product/${item._id}`);
-          const { _id, title, video_1,
-            video_2,
-            video_3, video, images, price, book, inStock, sold } =
+          const { _id, title,
+            video, videoModule, images, price, book, sold } =
             res.product;
-          if (inStock > 0) {
+          {
             newArr.push({
               _id,
               title,
               images,
               price,
               video,
-              video_1,
-              video_2,
-              video_3,
+              videoModule,
               book,
-              inStock,
               sold,
-              quantity: item.quantity > inStock ? 1 : item.quantity,
+              quantity: item.quantity,
             });
           }
+          // if (inStock > 0) {
+          //   newArr.push({
+          //     _id,
+          //     title,
+          //     images,
+          //     price,
+          //     video,
+          //     video_1,
+          //     video_2,
+          //     video_3,
+          //     book,
+          //     inStock,
+          //     sold,
+          //     quantity: item.quantity > inStock ? 1 : item.quantity,
+          //   });
+          // }
         }
 
         dispatch({ type: "ADD_CART", payload: newArr });
@@ -80,9 +91,9 @@ const Cart = () => {
     let newCart = [];
     for (const item of cart) {
       const res = await getData(`product/${item._id}`);
-      if (res.product.inStock - item.quantity >= 0) {
-        newCart.push(item);
-      }
+      // if (res.product.inStock - item.quantity >= 0) {
+      newCart.push(item);
+      // }
     }
 
     if (newCart.length < cart.length) {

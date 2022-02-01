@@ -15,6 +15,11 @@
     "static/development/_middlewareManifest.js"
   ],
   "pages": {
+    "/": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/index.js"
+    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -25,15 +30,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/create/[[...id]]": [
+    "/profile": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/create/[[...id]].js"
+      "static/chunks/pages/profile.js"
     ],
-    "/signin": [
+    "/videos/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/signin.js"
+      "static/chunks/pages/videos/[id].js"
     ]
   },
   "ampFirstPages": []

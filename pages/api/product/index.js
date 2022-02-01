@@ -83,12 +83,11 @@ const createProduct = async (req, res) => {
 
     const {
       video,
-      videoMudule,
+      videoModule,
       book,
       sale,
       title,
       price,
-      inStock,
       description,
       content,
       category,
@@ -98,7 +97,6 @@ const createProduct = async (req, res) => {
     if (
       !title ||
       !price ||
-      !inStock ||
       !description ||
       !content ||
       category === "all" ||
@@ -109,13 +107,12 @@ const createProduct = async (req, res) => {
     const newProduct = new Products({
       title: title.toLowerCase(),
       price,
-      inStock,
       description,
       content,
       category,
       images,
       video,
-      videoMudule,
+      videoModule,
       book,
       sale,
       book_view,

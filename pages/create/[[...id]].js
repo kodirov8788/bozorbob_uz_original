@@ -30,7 +30,6 @@ const ProductsManager = () => {
     video_9: "",
     video_10: "",
   };
-
   const videoInitialModule = {
     videoModule_1: "",
     videoModule_2: "",
@@ -83,12 +82,10 @@ const ProductsManager = () => {
     videoModule_49: "",
     videoModule_50: "",
   };
-
-
   const { state, dispatch } = useContext(DataContext);
   const { categories, auth } = state;
   const [product, setProduct] = useState(initialState);
-  const { sale, title, price, inStock, description, content, category, book } =
+  const { sale, title, price, description, content, category, book } =
     product;
   // --------------- video upload--------------------
   const [videoInput, setVideoInput] = useState(false);
@@ -102,9 +99,11 @@ const ProductsManager = () => {
   }, [category]);
 
   useEffect(() => {
-    if (categoryArr == ('video courses')) {
-      setVideoInput(true), setPdfInput(false);
-    } else if (categoryArr == ('Books')) { setPdfInput(true), setVideoInput(false) } else { setPdfInput(false), setVideoInput(false) }
+    // if (categoryArr == ('video courses')) {
+    //   setVideoInput(true), setPdfInput(true);
+    // } else if (categoryArr == ('Books')) { setPdfInput(true), setVideoInput(false) }
+    // else if (categoryArr == ('Gifts')) { setPdfInput(true), setVideoInput(true) }
+    if (categoryArr.includes('Books')) { setPdfInput(true), setVideoInput(false) } else { setPdfInput(true), setVideoInput(true) }
   }, [categoryArr]);
   // console.log("categoryArr", categoryArr);
   // console.log("videoInput", videoInput);
@@ -112,9 +111,9 @@ const ProductsManager = () => {
   // --------------- end of video upload--------------------
   const [images, setImages] = useState([]);
   const [video, setVideo] = useState(videoInitial);
-  const [videoMudule, setVideoModule] = useState(videoInitialModule);
+  const [videoModule, setVideoModule] = useState(videoInitialModule);
   // console.log("video >>>", video);
-  console.log("videoMudule", videoMudule);
+  console.log("videoModule", videoModule);
 
   const router = useRouter();
   const { id } = router.query;
@@ -140,7 +139,7 @@ const ProductsManager = () => {
   };
   const handleVideoInputModule = (e) => {
     const { name, value } = e.target;
-    setVideoModule({ ...videoMudule, [name]: value });
+    setVideoModule({ ...videoModule, [name]: value });
     dispatch({ type: "NOTIFY", payload: {} });
   };
   const handleChangeInput = (e) => {
@@ -200,7 +199,6 @@ const ProductsManager = () => {
     if (
       !title ||
       !price ||
-      !inStock ||
       !description ||
       !content ||
       category === "all" ||
@@ -229,7 +227,7 @@ const ProductsManager = () => {
     } else {
       res = await postData(
         "product",
-        { ...product, images: [...imgOldURL, ...media], video, videoMudule },
+        { ...product, images: [...imgOldURL, ...media], video, videoModule },
         auth.token
       );
       if (res.err)
@@ -272,13 +270,24 @@ const ProductsManager = () => {
               />
             </div>
 
-            <div className="col-sm-6">
+            {/* <div className="col-sm-6">
               <label htmlFor="price">In Stock</label>
               <input
                 type="number"
                 name="inStock"
                 value={inStock}
                 placeholder="inStock"
+                className="d-block w-100 p-2"
+                onChange={handleChangeInput}
+              />
+            </div> */}
+            <div className="col-sm-6">
+              <label htmlFor="sale">Sale</label>
+              <input
+                type="number"
+                name="sale"
+                value={sale}
+                placeholder="sale product"
                 className="d-block w-100 p-2"
                 onChange={handleChangeInput}
               />
@@ -355,20 +364,23 @@ const ProductsManager = () => {
               </div>
             ))}
           </div>
-          <div className="col-sm-6">
-            <label htmlFor="sale">Sale</label>
-            <input
-              type="number"
-              name="sale"
-              value={sale}
-              placeholder="sale product"
-              className="d-block w-100 p-2"
-              onChange={handleChangeInput}
-            />
-          </div>
 
+          {pdfInput ? (
+            <div className="col-sm-6">
+              <label htmlFor="book's link">Book's link</label>
+              <input
+                type="text"
+                name="book"
+                value={book}
+                placeholder="book's link"
+                className="d-block w-100 p-2"
+                onChange={handleChangeInput}
+              />
+            </div>
+          ) : (
+            ""
+          )}
           {videoInput ? (<>
-
             <div className="col-sm-6 my-2 ">
               <select
                 name="videoSelect"
@@ -381,6 +393,7 @@ const ProductsManager = () => {
                 <option value="videosModule">videosModule</option>
               </select>
             </div>
+
             {videoSelect === "videos" ?
               <div className="create__videos">
                 <label htmlFor="video link">Video links</label>
@@ -493,7 +506,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_1"
-                      value={videoMudule.videoModule_1}
+                      value={videoModule.videoModule_1}
                       placeholder="videoModule_1 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -503,7 +516,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_2"
-                      value={videoMudule.videoModule_2}
+                      value={videoModule.videoModule_2}
                       placeholder="videoModule_2 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -513,7 +526,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_3"
-                      value={videoMudule.videoModule_3}
+                      value={videoModule.videoModule_3}
                       placeholder="videoModule_3 link"
                       className="2"
                       onChange={handleVideoInputModule}
@@ -523,7 +536,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_4"
-                      value={videoMudule.videoModule_4}
+                      value={videoModule.videoModule_4}
                       placeholder="videoModule_4 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -533,7 +546,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_5"
-                      value={videoMudule.videoModule_5}
+                      value={videoModule.videoModule_5}
                       placeholder="videoModule_5 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -543,7 +556,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_6"
-                      value={videoMudule.videoModule_6}
+                      value={videoModule.videoModule_6}
                       placeholder="videoModule_6 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -553,7 +566,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_7"
-                      value={videoMudule.videoModule_7}
+                      value={videoModule.videoModule_7}
                       placeholder="videoModule_7 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -563,7 +576,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_8"
-                      value={videoMudule.videoModule_8}
+                      value={videoModule.videoModule_8}
                       placeholder="videoModule_8 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -573,7 +586,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_9"
-                      value={videoMudule.videoModule_9}
+                      value={videoModule.videoModule_9}
                       placeholder="videoModule_9 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -583,7 +596,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_10"
-                      value={videoMudule.videoModule_10}
+                      value={videoModule.videoModule_10}
                       placeholder="videoModule_10 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -596,7 +609,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_11"
-                      value={videoMudule.videoModule_11}
+                      value={videoModule.videoModule_11}
                       placeholder="videoModule_11 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -606,7 +619,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_12"
-                      value={videoMudule.videoModule_12}
+                      value={videoModule.videoModule_12}
                       placeholder="videoModule_12 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -616,7 +629,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_13"
-                      value={videoMudule.videoModule_13}
+                      value={videoModule.videoModule_13}
                       placeholder="videoModule_13 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -626,7 +639,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_14"
-                      value={videoMudule.videoModule_14}
+                      value={videoModule.videoModule_14}
                       placeholder="videoModule_14 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -636,7 +649,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_15"
-                      value={videoMudule.videoModule_15}
+                      value={videoModule.videoModule_15}
                       placeholder="videoModule_15 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -646,7 +659,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_16"
-                      value={videoMudule.videoModule_16}
+                      value={videoModule.videoModule_16}
                       placeholder="videoModule_16 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -656,7 +669,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_17"
-                      value={videoMudule.videoModule_17}
+                      value={videoModule.videoModule_17}
                       placeholder="videoModule_17 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -666,7 +679,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_18"
-                      value={videoMudule.videoModule_18}
+                      value={videoModule.videoModule_18}
                       placeholder="videoModule_18 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -676,7 +689,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_19"
-                      value={videoMudule.videoModule_19}
+                      value={videoModule.videoModule_19}
                       placeholder="videoModule_19 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -686,7 +699,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_20"
-                      value={videoMudule.videoModule_20}
+                      value={videoModule.videoModule_20}
                       placeholder="videoModule_20 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -700,7 +713,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_21"
-                      value={videoMudule.videoModule_21}
+                      value={videoModule.videoModule_21}
                       placeholder="videoModule_21 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -710,7 +723,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_22"
-                      value={videoMudule.videoModule_22}
+                      value={videoModule.videoModule_22}
                       placeholder="videoModule_22 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -720,7 +733,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_23"
-                      value={videoMudule.videoModule_23}
+                      value={videoModule.videoModule_23}
                       placeholder="videoModule_23 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -730,7 +743,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_24"
-                      value={videoMudule.videoModule_24}
+                      value={videoModule.videoModule_24}
                       placeholder="videoModule_24 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -740,7 +753,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_25"
-                      value={videoMudule.videoModule_25}
+                      value={videoModule.videoModule_25}
                       placeholder="videoModule_25 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -750,7 +763,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_26"
-                      value={videoMudule.videoModule_26}
+                      value={videoModule.videoModule_26}
                       placeholder="videoModule_26 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -760,7 +773,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_27"
-                      value={videoMudule.videoModule_27}
+                      value={videoModule.videoModule_27}
                       placeholder="videoModule_27 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -770,7 +783,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_28"
-                      value={videoMudule.videoModule_28}
+                      value={videoModule.videoModule_28}
                       placeholder="videoModule_28 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -780,7 +793,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_29"
-                      value={videoMudule.videoModule_29}
+                      value={videoModule.videoModule_29}
                       placeholder="videoModule_29 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -790,7 +803,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_30"
-                      value={videoMudule.videoModule_30}
+                      value={videoModule.videoModule_30}
                       placeholder="videoModule_30 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -804,7 +817,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_31"
-                      value={videoMudule.videoModule_31}
+                      value={videoModule.videoModule_31}
                       placeholder="videoModule_31 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -814,7 +827,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_32"
-                      value={videoMudule.videoModule_32}
+                      value={videoModule.videoModule_32}
                       placeholder="videoModule_32 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -824,7 +837,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_33"
-                      value={videoMudule.videoModule_33}
+                      value={videoModule.videoModule_33}
                       placeholder="videoModule_33 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -834,7 +847,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_34"
-                      value={videoMudule.videoModule_34}
+                      value={videoModule.videoModule_34}
                       placeholder="videoModule_34 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -844,7 +857,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_35"
-                      value={videoMudule.videoModule_35}
+                      value={videoModule.videoModule_35}
                       placeholder="videoModule_35 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -854,7 +867,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_36"
-                      value={videoMudule.videoModule_36}
+                      value={videoModule.videoModule_36}
                       placeholder="videoModule_36 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -864,7 +877,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_37"
-                      value={videoMudule.videoModule_37}
+                      value={videoModule.videoModule_37}
                       placeholder="videoModule_37 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -874,7 +887,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_38"
-                      value={videoMudule.videoModule_38}
+                      value={videoModule.videoModule_38}
                       placeholder="videoModule_38 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -884,7 +897,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_39"
-                      value={videoMudule.videoModule_39}
+                      value={videoModule.videoModule_39}
                       placeholder="videoModule_39 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -894,7 +907,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_40"
-                      value={videoMudule.videoModule_40}
+                      value={videoModule.videoModule_40}
                       placeholder="videoModule_40 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -908,7 +921,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_41"
-                      value={videoMudule.videoModule_41}
+                      value={videoModule.videoModule_41}
                       placeholder="videoModule_41 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -918,7 +931,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_42"
-                      value={videoMudule.videoModule_42}
+                      value={videoModule.videoModule_42}
                       placeholder="videoModule_42 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -928,7 +941,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_43"
-                      value={videoMudule.videoModule_43}
+                      value={videoModule.videoModule_43}
                       placeholder="videoModule_43 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -938,7 +951,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_44"
-                      value={videoMudule.videoModule_44}
+                      value={videoModule.videoModule_44}
                       placeholder="videoModule_44 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -948,7 +961,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_45"
-                      value={videoMudule.videoModule_45}
+                      value={videoModule.videoModule_45}
                       placeholder="videoModule_45 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -958,7 +971,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_46"
-                      value={videoMudule.videoModule_46}
+                      value={videoModule.videoModule_46}
                       placeholder="videoModule_46 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -968,7 +981,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_47"
-                      value={videoMudule.videoModule_47}
+                      value={videoModule.videoModule_47}
                       placeholder="videoModule_47 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -978,7 +991,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_48"
-                      value={videoMudule.videoModule_48}
+                      value={videoModule.videoModule_48}
                       placeholder="videoModule_48 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -988,7 +1001,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_49"
-                      value={videoMudule.videoModule_49}
+                      value={videoModule.videoModule_49}
                       placeholder="videoModule_49 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -998,7 +1011,7 @@ const ProductsManager = () => {
                     <input
                       type="text"
                       name="videoModule_50"
-                      value={videoMudule.videoModule_50}
+                      value={videoModule.videoModule_50}
                       placeholder="videoModule_50 link"
                       className=""
                       onChange={handleVideoInputModule}
@@ -1013,21 +1026,7 @@ const ProductsManager = () => {
           ) : (
             ""
           )}
-          {pdfInput ? (
-            <div className="col-sm-6">
-              <label htmlFor="book's link">Book's link</label>
-              <input
-                type="text"
-                name="book"
-                value={book}
-                placeholder="book's link"
-                className="d-block w-100 p-2"
-                onChange={handleChangeInput}
-              />
-            </div>
-          ) : (
-            ""
-          )}
+
         </div>
       </form >
     </div >
