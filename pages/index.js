@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../store/GlobalState";
-// import Filter from "../components/Filter";
+import Filter from "../components/Filter";
 import { getData } from "../utils/fetchData";
 import ProductItem from "../components/product/ProductItem";
 // import ProductItemSlider from "../components/product/ProductItemSlider";
@@ -9,12 +9,12 @@ import { useRouter } from "next/router";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import Slider from "react-slick";
-// import Banner from "./Banner";
-// import Footer from "../components/Footer";
+import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 // import Link from "next/link";
 import en from "../locales/en";
 import uz from "../locales/uz";
-// import MediaCategory from "../components/Media/MediaCategory";
+import MediaCategory from "../components/Media/MediaCategory";
 const Home = (props) => {
   const [products, setProducts] = useState(props.products);
   const [isCheck, setIsCheck] = useState(false);
@@ -39,45 +39,45 @@ const Home = (props) => {
   const { locale } = router;
   const t = locale === "en" ? en : uz;
   // -------------------------------------------------
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   slidesToShow: 4,
-  //   slidesToScroll: 1,
-  //   autoplay: true,
-  //   autoplaySpeed: 5000,
-  //   cssEase: "linear",
-  //   pauseOnHover: true,
-  //   speed: 1000,
-  //   responsive: [
-  //     {
-  //       breakpoint: 1024,
-  //       settings: {
-  //         slidesToShow: 3,
-  //         slidesToScroll: 1,
-  //         infinite: true,
-  //         dots: true,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 600,
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 480,
-  //       settings: {
-  //         // centerMode: true,
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1,
-  //         infinite: true,
-  //         dots: true,
-  //       },
-  //     },
-  //   ],
-  // };
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    cssEase: "linear",
+    pauseOnHover: true,
+    speed: 1000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          // centerMode: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+    ],
+  };
   // -------------------------------------------------
 
   useEffect(() => {
@@ -127,7 +127,7 @@ const Home = (props) => {
       <Head>
         <title>Home Page</title>
       </Head>
-      {/* {
+      {
         isSearchClick.isSearchClick !== true && <Banner />
       }
 
@@ -156,13 +156,12 @@ const Home = (props) => {
           </button>
         </div>
       )}
-      {/* {
+      {
         SearchClick !== true && <MediaCategory />
-      } */}
-      {/* <MediaCategory /> */}
-      {/* <div className="price_option">
+      }
+      <div className="price_option">
         <Filter />
-      </div> */}
+      </div>
       {/* {shirinliklar.length !== 0 ? (
         <div className="product__slick">
           <h1>{t.product}</h1>
@@ -178,8 +177,8 @@ const Home = (props) => {
         </div>
       ) : (
         ""
-      )}
-      {technology.length !== 0 ? (
+      )} */}
+      {/* {technology.length !== 0 ? (
         <div className="product__slick">
           <h1>technology</h1>
           <Slider {...settings}>
@@ -208,7 +207,7 @@ const Home = (props) => {
           ))
         )}
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

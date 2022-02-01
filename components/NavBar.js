@@ -12,8 +12,8 @@ import Category from "./Category";
 import Search from "./Search";
 import en from "../locales/en";
 import uz from "../locales/uz";
-import LanguageSelect from "../pages/LanguageSelect";
-import MediaLanguageSelect from "../pages/MediaLanguageSelect";
+import LanguageSelect from "./LanguageSelect";
+import MediaLanguageSelect from "./MediaLanguageSelect";
 function NavBar() {
 	const router = useRouter();
 	const { state, dispatch } = useContext(DataContext);

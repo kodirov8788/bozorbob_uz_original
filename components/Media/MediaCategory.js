@@ -2,7 +2,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useContext } from "react";
-import Link from "next/link";
 import filterSearch from "../../utils/filterSearch";
 import { useRouter } from "next/router";
 import { DataContext } from "../../store/GlobalState";
@@ -17,7 +16,7 @@ const MediaCategory = () => {
   const { state } = useContext(DataContext);
   const { categories } = state;
   const router = useRouter();
-  const { locale, pathname } = router;
+  const { locale } = router;
   const t = locale === "en" ? en : uz;
   const [categoryId, setCategoryId] = useState("");
   useEffect(() => {
@@ -28,13 +27,13 @@ const MediaCategory = () => {
 
   return (
     <div className="mediaCategory_container" >
-      {categories.map((item) => (<>
+      {categories.map((item, index) => (<>
         <li className="mediaCategory_listItem"
           onClick={() =>
             setCategoryId(item.name) +
             filterSearch({ router, category: item._id })
           }
-          key={item._id}
+          key={index}
           value={item._id}
         >
           <span> {item.name === "Business" && <><MdBusinessCenter /><b>{item.name}</b>
