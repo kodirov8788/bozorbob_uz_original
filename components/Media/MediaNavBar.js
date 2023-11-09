@@ -54,27 +54,26 @@ function MediaNavBar() {
     return router.push("/");
   };
 
-  const adminRouter = () => {
-    return (
-      <>
-        <Link href="/users">
-          <a className="navbar__userlistItem">Users</a>
-        </Link>
-        <Link href="/create">
-          <a className="navbar__userlistItem">Products</a>
-        </Link>
-        <Link href="/categories">
-          <a className="navbar__userlistItem">Categories</a>
-        </Link>
-      </>
-    );
-  };
+  // const adminRouter = () => {
+  //   return (
+  //     <>
+  //       <Link href="/users">
+  //         <a className="navbar__userlistItem">Users</a>
+  //       </Link>
+  //       <Link href="/create">
+  //         <a className="navbar__userlistItem">Products</a>
+  //       </Link>
+  //       <Link href="/categories">
+  //         <a className="navbar__userlistItem">Categories</a>
+  //       </Link>
+  //     </>
+  //   );
+  // };
 
   return (
     <nav
-      className={`${
-        !show ? "mediaNavbar" : "mediaNavbar navbar__color"
-      } navbar-expand-lg`}
+      className={`${!show ? "mediaNavbar" : "mediaNavbar navbar__color"
+        } navbar-expand-lg`}
     >
       <Link href="/">
         <div className="mediaNavbar__brandContainer">

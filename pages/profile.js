@@ -304,7 +304,7 @@ const Profile = () => {
           </li>
           {dataVideo.map((order, index) => (
             <li className="profile__listItem" key={index}>
-              <Link
+              {/* <Link
                 href={{
                   pathname: `/videos/${order._id}`,
                   query: {
@@ -315,7 +315,7 @@ const Profile = () => {
                   <span>{order.title}</span>
                   <BiLinkExternal />
                 </a>
-              </Link>
+              </Link> */}
             </li>
           ))}
         </div>
