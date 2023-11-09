@@ -30,35 +30,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/about/aboutus": [
+    "/create/[[...id]]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/about/aboutus.js"
+      "static/chunks/pages/create/[[...id]].js"
     ],
-    "/about/blog": [
+    "/register": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/about/blog.js"
-    ],
-    "/about/connect": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/about/connect.js"
-    ],
-    "/about/office": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/about/office.js"
-    ],
-    "/about/production": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/about/production.js"
-    ],
-    "/about/services": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/about/services.js"
+      "static/chunks/pages/register.js"
     ]
   },
   "ampFirstPages": []

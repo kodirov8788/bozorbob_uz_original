@@ -1,13 +1,15 @@
 module.exports = {
   env: {
-    BASE_URL: "https://www.bozorbob.uz/",
+    // BASE_URL: "https://www.bozorbob.uz/",
+    BASE_URL: "bozorbob-uz-original.vercel.app/",
     // git config --global http.version HTTP/1.1
+
     // BASE_URL: "http://localhost:3000/",
     MONGODB_URL:
-      "mongodb+srv://dunyoshop:84hfjGeD4ScN1G1W@cluster0.nscxl.mongodb.net/collection?retryWrites=true&w=majority",
-    ACCESS_TOKEN_SECRET: "JG]d3~J7@.cmNdSkh=b~2$=ZwqbU8r4dsF+[K$T5uVaMPDn*<q",
+      "mongodb+srv://next123:next123@cluster0.wn8mt.mongodb.net/?retryWrites=true&w=majority",
     REFRESH_TOKEN_SECRET:
       "su8W6Trd~%R8fyZGE,+_>>Kwld#j%rk<6x[ue3Gv!%pwJB!{Kn]:Q9e-LhpwV4v-C,K:hSgv^(;<?RW3'ckMC2#~S5;aNN}KfWh",
+    ACCESS_TOKEN_SECRET: "su8W6Trd~%R8fyZGE,+_>>Kwld#j%rk<6xadsdassss[ue3Gv!%pwJB!{Kn]:Q9e-LhpwV4v-C,K:hSgv^(;<?RW3'ckMC2#~S5;aNN}KfWh",
     CLOUD_UPDATE_PRESET: "goodle_nextjs",
     CLOUD_UPDATE_PRESETVIDEOS: "goodle_nextjs__videos",
     CLOUD_NAME: "goodle-next",

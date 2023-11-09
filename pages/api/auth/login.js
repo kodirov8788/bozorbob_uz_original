@@ -26,11 +26,13 @@ const login = async (req, res) => {
       return res.status(400).json({ err: "This user does not exist." });
 
     const isMatch = await bcrypt.compare(password, user.password);
+    // console.log(isMatch)
     if (!isMatch) return res.status(400).json({ err: "Incorrect password." });
 
     const access_token = createAccessToken({ id: user._id });
     const refresh_token = createRefreshToken({ id: user._id });
-
+    console.log(access_token)
+    console.log(refresh_token)
     res.json({
       msg: "Login Success!",
       refresh_token,
