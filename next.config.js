@@ -1,10 +1,10 @@
 module.exports = {
   env: {
     // BASE_URL: "https://www.bozorbob.uz/",
-    BASE_URL: "https://bozorbob-uz-original.vercel.app",
+    // BASE_URL: "https://bozorbob-uz-original.vercel.app/",
     // git config --global http.version HTTP/1.1
 
-    // BASE_URL: "http://localhost:3000/",
+    BASE_URL: "http://localhost:3000/",
     MONGODB_URL:
       "mongodb+srv://next123:next123@cluster0.wn8mt.mongodb.net/?retryWrites=true&w=majority",
     REFRESH_TOKEN_SECRET:
